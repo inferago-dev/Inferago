@@ -12,12 +12,12 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-12">
+        <div className="flex flex-col items-center text-center w-full gap-y-12">
 
           {/* Logo */}
-          <div className="md:col-span-5 text-center md:text-left">
+          <div className="flex flex-col items-center w-full">
 
-            <div className="flex items-center justify-center md:justify-start gap-3 mb-6">
+            <div className="flex items-center justify-center gap-3 mb-6">
               <img
                 src="./Infer_Full.png"
                 alt="Infer"
@@ -25,17 +25,17 @@ const Footer = () => {
               />
             </div>
 
-            <p className="text-white/40 text-md md:text-sm tracking-wide max-w-md mx-auto md:mx-0">
+            <p className="text-white/40 text-md md:text-sm tracking-wide max-w-md mx-auto text-center">
               Precision in Every Decision.
             </p>
 
           </div>
 
           {/* Pages + Resources Wrapper */}
-          <div className="md:col-span-7">
+          <div className="w-full flex justify-center">
 
             {/* Pages + Resources Side-by-Side */}
-            <div className="grid grid-cols-2 md:grid-cols-3 mx-8 gap-x-12 gap-y-10 text-left">
+            <div className="flex flex-wrap justify-center gap-x-12 md:gap-x-24 gap-y-10 text-left">
 
               {/* Pages */}
               <div>
