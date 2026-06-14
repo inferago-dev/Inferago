@@ -8,14 +8,14 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-black inter-regular">
+    <section id="contact" className="pt-24 pb-12 bg-black inter-regular">
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-center text-white text-sm mb-8 md:mb-16">CONTACT US</h2>
+        <h2 className="text-center text-white text-sm mb-8 md:mb-12">CONTACT US</h2>
 
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Left Text */}
           <div>
-            <h2 className="text-md mb-2 md:mb-6 inter-regular md:text-left text-center md:-mt-40">Let’s Connect</h2>
+            <h2 className="text-md mb-2 md:mb-6 inter-regular md:text-left text-center">Let’s Connect</h2>
             <p className="text-sm inter-light tracking-wide md:text-left text-center text-white/50 leading-5 max-w-md">
               Your message matters to us, connect with us
               <br />
