@@ -111,7 +111,7 @@ const Footer = () => {
                   CONNECT
                 </div>
 
-                <div className="flex justify-center md:justify-start gap-3 text-xl text-white/60">
+                <div className="flex justify-center gap-3 text-xl text-white/60">
 
 
 
