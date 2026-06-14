@@ -12,7 +12,7 @@ const Contact = () => {
       <div className="max-w-6xl mx-auto px-6">
         <h2 className="text-center text-white text-sm mb-8 md:mb-12">CONTACT US</h2>
 
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+        <div className="grid md:grid-cols-2 gap-16 items-start">
           {/* Left Text */}
           <div>
             <h2 className="text-md mb-2 md:mb-6 inter-regular md:text-left text-center">Let’s Connect</h2>
