@@ -1,7 +1,6 @@
 // components/Footer.jsx
 import React from "react";
 import {
-  FaDiscord,
   FaInstagram,
   FaXTwitter,
   FaLinkedin,
@@ -114,23 +113,22 @@ const Footer = () => {
 
                 <div className="flex justify-center md:justify-start gap-3 text-xl text-white/60">
 
-                  <a href="#" className="hover:text-white" aria-label="Discord">
-                    <FaDiscord />
-                  </a>
 
-                  <a href="#" className="hover:text-white" aria-label="Instagram">
+
+                  <a href="https://www.instagram.com/inferagoai/" target="_blank" rel="noopener noreferrer" className="hover:text-white" aria-label="Instagram">
                     <FaInstagram />
                   </a>
 
                   <a
-                    href="#"
+                    href="https://x.com/InferagoAi"
+                    target="_blank" rel="noopener noreferrer"
                     className="hover:text-white"
                     aria-label="X (Twitter)"
                   >
                     <FaXTwitter />
                   </a>
 
-                  <a href="#" className="hover:text-white" aria-label="LinkedIn">
+                  <a href="https://linkedin.com/inferago2025" target="_blank" rel="noopener noreferrer" className="hover:text-white" aria-label="LinkedIn">
                     <FaLinkedin />
                   </a>
 
