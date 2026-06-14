@@ -128,7 +128,7 @@ const Footer = () => {
                     <FaXTwitter />
                   </a>
 
-                  <a href="https://linkedin.com/inferago2025" target="_blank" rel="noopener noreferrer" className="hover:text-white" aria-label="LinkedIn">
+                  <a href="https://www.linkedin.com/company/inferago2025/" target="_blank" rel="noopener noreferrer" className="hover:text-white" aria-label="LinkedIn">
                     <FaLinkedin />
                   </a>
 
