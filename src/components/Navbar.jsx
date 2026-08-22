@@ -1,15 +1,22 @@
 // components/Navbar.jsx
 import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { IoIosClose } from "react-icons/io";
 import { HiOutlineBars3 } from "react-icons/hi2";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (location.pathname !== "/") {
+      navigate(`/#${id}`);
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
     setIsOpen(false);
   };
@@ -33,34 +40,34 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-10 text-xs">
           <button
             onClick={() => scrollToSection("home")}
-            className="border border-transparent hover:border-b-white py-1.5 transition-colors"
+            className="border border-transparent hover:border-b-white py-1.5 transition-all active:scale-95"
           >
             HOME
           </button>
           <button
             onClick={() => scrollToSection("about")}
-            className="border border-transparent hover:border-b-white py-1.5 transition-colors"
+            className="border border-transparent hover:border-b-white py-1.5 transition-all active:scale-95"
           >
             ABOUT
           </button>
           <button
             onClick={() => scrollToSection("products")}
-            className="border border-transparent hover:border-b-white py-1.5 transition-colors"
+            className="border border-transparent hover:border-b-white py-1.5 transition-all active:scale-95"
           >
             PRODUCTS
           </button>
           <button
             onClick={() => scrollToSection("contact")}
-            className="border border-transparent hover:border-b-white py-1.5 transition-colors"
+            className="border border-transparent hover:border-b-white py-1.5 transition-all active:scale-95"
           >
             CONTACT
           </button>
-          <a
-            href="#"
-            className="border border-transparent hover:border-b-white py-1.5 transition-colors"
+          <button
+            onClick={() => scrollToSection("platform")}
+            className="border border-transparent hover:border-b-white py-1.5 transition-all active:scale-95"
           >
             DOCS
-          </a>
+          </button>
         </div>
 
         {/* Auth Buttons */}
@@ -107,9 +114,9 @@ const Navbar = () => {
           <button onClick={() => scrollToSection("contact")}>
             CONTACT
           </button>
-          <a href="#" className="text-center">
+          <button onClick={() => scrollToSection("platform")} className="text-center">
             DOCS
-          </a>
+          </button>
 
           <div className="flex flex-col gap-4 pt-6 border-t border-white/10">
             <button

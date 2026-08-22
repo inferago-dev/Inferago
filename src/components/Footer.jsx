@@ -1,5 +1,6 @@
 // components/Footer.jsx
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FaInstagram,
   FaXTwitter,
@@ -45,29 +46,25 @@ const Footer = () => {
                 </div>
 
                 <div className="space-y-2 text-xs tracking-wide text-white/70">
-                  <a href="#" className="block hover:text-white transition-colors">
+                  <Link to="/#home" className="block hover:text-white transition-colors">
                     HOME
-                  </a>
+                  </Link>
 
-                  <a href="#" className="block hover:text-white transition-colors">
+                  <Link to="/#about" className="block hover:text-white transition-colors">
                     ABOUT US
-                  </a>
+                  </Link>
 
-                  <a href="#" className="block hover:text-white transition-colors">
+                  <Link to="/#products" className="block hover:text-white transition-colors">
                     PRODUCTS
-                  </a>
+                  </Link>
 
-                  <a href="#" className="block hover:text-white transition-colors">
+                  <Link to="/#platform" className="block hover:text-white transition-colors">
                     DOCS
-                  </a>
+                  </Link>
 
-                  <a href="#" className="block hover:text-white transition-colors">
-                    BLOG
-                  </a>
-
-                  <a href="#" className="block hover:text-white transition-colors">
+                  <Link to="/#contact" className="block hover:text-white transition-colors">
                     CONTACT
-                  </a>
+                  </Link>
                 </div>
 
               </div>
@@ -80,26 +77,26 @@ const Footer = () => {
                 </div>
 
                 <div className="space-y-2 text-xs tracking-wide text-white/70">
-                  <a
-                    href="#"
+                  <Link
+                    to="/#platform"
                     className="block hover:text-white transition-colors"
                   >
                     DOCUMENTATION
-                  </a>
+                  </Link>
 
-                  <a
-                    href="#"
+                  <Link
+                    to="/#platform"
                     className="block hover:text-white transition-colors"
                   >
                     CLI & SDK
-                  </a>
+                  </Link>
 
-                  <a
-                    href="#"
+                  <Link
+                    to="/#platform"
                     className="block hover:text-white transition-colors"
                   >
                     INTEGRATIONS
-                  </a>
+                  </Link>
                 </div>
 
               </div>
@@ -113,22 +110,20 @@ const Footer = () => {
 
                 <div className="flex justify-center gap-3 text-xl text-white/60">
 
-
-
-                  <a href="https://www.instagram.com/inferagoai/" target="_blank" rel="noopener noreferrer" className="hover:text-white" aria-label="Instagram">
+                  <a href="https://www.instagram.com/inferagoai/" target="_blank" rel="noopener noreferrer" className="icon-pop hover:text-white" aria-label="Instagram">
                     <FaInstagram />
                   </a>
 
                   <a
                     href="https://x.com/InferagoAi"
                     target="_blank" rel="noopener noreferrer"
-                    className="hover:text-white"
+                    className="icon-pop hover:text-white"
                     aria-label="X (Twitter)"
                   >
                     <FaXTwitter />
                   </a>
 
-                  <a href="https://www.linkedin.com/company/inferago2025/" target="_blank" rel="noopener noreferrer" className="hover:text-white" aria-label="LinkedIn">
+                  <a href="https://www.linkedin.com/company/inferago2025/" target="_blank" rel="noopener noreferrer" className="icon-pop hover:text-white" aria-label="LinkedIn">
                     <FaLinkedin />
                   </a>
 
@@ -151,15 +146,13 @@ const Footer = () => {
 
             <p>ALL RIGHTS RESERVED</p>
 
-            <a href="#" className="hover:text-white/70 transition-colors">
+            <Link to="/privacy" className="hover:text-white/70 transition-colors">
               PRIVACY POLICY
-            </a>
+            </Link>
 
-            <a href="#" className="hover:text-white/70 transition-colors">
+            <Link to="/terms" className="hover:text-white/70 transition-colors">
               TERMS OF SERVICE
-            </a>
-
-
+            </Link>
 
           </div>
 

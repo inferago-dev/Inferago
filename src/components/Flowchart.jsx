@@ -5,6 +5,7 @@ import { FiLock } from "react-icons/fi";
 import { LuChartLine, LuScanEye } from "react-icons/lu";
 import { BsPlusLg } from "react-icons/bs";
 import { RiGitBranchLine } from "react-icons/ri";
+import Reveal from "./Reveal";
 
 const Flowchart = () => {
   return (
@@ -23,7 +24,7 @@ const Flowchart = () => {
         opacity-70 blur-[90px] z-0"
       />
 
-      <div className="max-w-7xl mx-auto relative z-10 w-full">
+      <Reveal className="max-w-7xl mx-auto relative z-10 w-full">
 
         {/* ========================= */}
         {/* DESKTOP VIEW - UNCHANGED */}
@@ -344,7 +345,7 @@ const Flowchart = () => {
 
         </div>
 
-      </div>
+      </Reveal>
 
     </section>
   );

@@ -1,6 +1,7 @@
 // components/Hero.jsx
 import React from "react";
 import Flowchart from "./Flowchart";
+import Reveal from "./Reveal";
 
 const Hero = () => {
   return (
@@ -26,28 +27,28 @@ const Hero = () => {
         <div className="max-w-5xl mx-auto px-5 md:px-6 text-center relative z-20 w-full">
 
           {/* Realistic Glass Effect Badge */}
-          <div className="glass-badge inline-flex items-center gap-2 px-4 py-1.5 mb-6 md:mb-4 rounded-2xl">
+          <Reveal className="glass-badge inline-flex items-center gap-2 px-4 py-1.5 mb-6 md:mb-4 rounded-2xl">
             <span className="inter-regular text-xs tracking-wide text-white">
               AI AUTOMATION GOVERNANCE
             </span>
-          </div>
+          </Reveal>
 
           {/* Heading - Better mobile typography */}
-          <h1 className="text-[2.1rem] leading-[1.1] 
-                         md:text-5xl 
+          <Reveal delay={100} as="h1" className="text-[2.1rem] leading-[1.1]
+                         md:text-5xl
                          inter-medium tracking-tight px-1">
             Control AI Automation with
             <br />
             Precision and Confidence
-          </h1>
+          </Reveal>
 
           {/* Subtitle - Improved mobile readability */}
-          <p className="mt-4 md:mt-2 max-w-xl mx-auto 
-                        inter-light text-[15px] md:text-md 
+          <Reveal delay={200} as="p" className="mt-4 md:mt-2 max-w-xl mx-auto
+                        inter-light text-[15px] md:text-md
                         text-white/60 px-6 leading-relaxed">
             Ensure Secure, Compliant and High-Performance <br className="hidden md:block" />
             AI Automation at Scale
-          </p>
+          </Reveal>
         </div>
       </section>
 

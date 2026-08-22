@@ -1,5 +1,6 @@
 // components/Contact.jsx
 import React from "react";
+import Reveal from "./Reveal";
 
 const Contact = () => {
   const handleSubmit = (e) => {
@@ -10,11 +11,11 @@ const Contact = () => {
   return (
     <section id="contact" className="pt-24 pb-12 bg-black inter-regular">
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-center text-white text-sm mb-8 md:mb-12">CONTACT US</h2>
+        <Reveal as="h2" className="text-center text-white text-sm mb-8 md:mb-12">CONTACT US</Reveal>
 
         <div className="grid md:grid-cols-2 gap-16 items-start">
           {/* Left Text */}
-          <div>
+          <Reveal delay={80}>
             <h2 className="text-md mb-2 md:mb-6 inter-regular md:text-left text-center">Let’s Connect</h2>
             <p className="text-sm inter-light tracking-wide md:text-left text-center text-white/50 leading-5 max-w-md">
               Your message matters to us, connect with us
@@ -26,10 +27,10 @@ const Contact = () => {
             <p className="text-sm mt-6 md:text-left text-center text-white/50 max-w-md underline cursor-pointer hover:text-white transition">
               Visit Help Center →
             </p>
-          </div>
+          </Reveal>
 
           {/* Right Form */}
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <Reveal delay={160} as="form" onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-2 gap-6 ">
               <div className="gradient-border-b">
                 <input
@@ -74,7 +75,7 @@ const Contact = () => {
             >
               Send Message
             </button>
-          </form>
+          </Reveal>
         </div>
       </div>
     </section>

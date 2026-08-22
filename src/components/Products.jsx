@@ -3,6 +3,7 @@ import React from "react";
 import { GoShieldLock } from "react-icons/go";
 import { BiCommand } from "react-icons/bi";
 import { LuScanEye } from "react-icons/lu";
+import Reveal from "./Reveal";
 
 const Products = () => {
   const products = [
@@ -35,9 +36,9 @@ const Products = () => {
     <section id="products" className="py-12 md:py-24 bg-black inter-regular">
       <div className="max-w-5xl mx-auto px-6">
         {/* Heading */}
-        <div className="text-center mb-8 md:mb-16">
+        <Reveal className="text-center mb-8 md:mb-16">
           <div className="text-white text-sm mb-1 md:mb-3">PRODUCTS</div>
-        </div>
+        </Reveal>
 
         {/* Cards - Only this part is modified */}
         <div className="grid md:grid-cols-3 gap-4">
@@ -47,10 +48,12 @@ const Products = () => {
             const isStrokeOnly = product.useStrokeOnly ?? false;
 
             return (
-              <div
+              <Reveal
                 key={i}
+                delay={i * 100}
                 className="
     glass-badge
+    card-lift
     relative
     overflow-hidden
     rounded-2xl
@@ -140,11 +143,14 @@ const Products = () => {
                     items-center
                     justify-center
                     w-fit
+                    transition-all
+                    active:scale-95
+                    hover:bg-white/90
                   "
                 >
                   Learn More
                 </button>
-              </div>
+              </Reveal>
             );
           })}
         </div>
