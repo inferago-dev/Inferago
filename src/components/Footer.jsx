@@ -46,23 +46,27 @@ const Footer = () => {
                 </div>
 
                 <div className="space-y-2 text-xs tracking-wide text-white/70">
-                  <Link to="/#home" className="block hover:text-white transition-colors">
+                  <Link to="/" className="block hover:text-white transition-colors">
                     HOME
                   </Link>
 
-                  <Link to="/#about" className="block hover:text-white transition-colors">
-                    ABOUT US
+                  <Link to="/ai" className="block hover:text-white transition-colors">
+                    AI
                   </Link>
 
-                  <Link to="/#products" className="block hover:text-white transition-colors">
-                    PRODUCTS
+                  <Link to="/web" className="block hover:text-white transition-colors">
+                    WEB
                   </Link>
 
-                  <Link to="/#platform" className="block hover:text-white transition-colors">
-                    DOCS
+                  <Link to="/work" className="block hover:text-white transition-colors">
+                    WORK
                   </Link>
 
-                  <Link to="/#contact" className="block hover:text-white transition-colors">
+                  <Link to="/about" className="block hover:text-white transition-colors">
+                    ABOUT
+                  </Link>
+
+                  <Link to="/contact" className="block hover:text-white transition-colors">
                     CONTACT
                   </Link>
                 </div>
@@ -78,21 +82,21 @@ const Footer = () => {
 
                 <div className="space-y-2 text-xs tracking-wide text-white/70">
                   <Link
-                    to="/#platform"
+                    to="/ai"
                     className="block hover:text-white transition-colors"
                   >
                     DOCUMENTATION
                   </Link>
 
                   <Link
-                    to="/#platform"
+                    to="/ai"
                     className="block hover:text-white transition-colors"
                   >
                     CLI & SDK
                   </Link>
 
                   <Link
-                    to="/#platform"
+                    to="/ai"
                     className="block hover:text-white transition-colors"
                   >
                     INTEGRATIONS

@@ -1,8 +1,21 @@
 // components/Contact.jsx
-import React from "react";
+import React, { useState } from "react";
 import Reveal from "./Reveal";
 
+const buildOptions = [
+  "Website",
+  "SaaS",
+  "Mobile app",
+  "E-commerce",
+  "AI product",
+  "Automation",
+  "Custom software",
+  "Not sure yet",
+];
+
 const Contact = () => {
+  const [buildType, setBuildType] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     alert("Thank you! Our team will respond within 4 hours.");
@@ -36,16 +49,16 @@ const Contact = () => {
                 <input
                   type="text"
                   className="placeholder:text-sm"
-                  placeholder="First Name"
+                  placeholder="Name"
                   required
                 />
               </div>
 
               <div className="gradient-border-b">
                 <input
-                  type="text"
+                  type="email"
                   className="placeholder:text-sm"
-                  placeholder="Last Name"
+                  placeholder="Email"
                   required
                 />
               </div>
@@ -53,19 +66,48 @@ const Contact = () => {
 
             <div className="gradient-border-b">
               <input
-                type="email"
+                type="text"
                 className="placeholder:text-sm"
-                placeholder="Work Email"
-                required
+                placeholder="Company / Project"
               />
+            </div>
+
+            <div>
+              <p className="text-xs text-white/40 inter-light mb-3">
+                What are you building?
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {buildOptions.map((option) => (
+                  <button
+                    key={option}
+                    type="button"
+                    onClick={() => setBuildType(option)}
+                    className={`px-3 py-1.5 text-xs rounded-full border transition-all active:scale-95 ${
+                      buildType === option
+                        ? "bg-white text-black border-white"
+                        : "border-white/20 text-white/60 hover:border-white/40 hover:text-white"
+                    }`}
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
             </div>
 
             <div className="gradient-border-b">
               <textarea
                 className="placeholder:text-sm"
-                placeholder="Enter your Message"
+                placeholder="Tell us about it"
                 rows="5"
                 required
+              />
+            </div>
+
+            <div className="gradient-border-b">
+              <input
+                type="text"
+                className="placeholder:text-sm"
+                placeholder="Budget / timeline (optional)"
               />
             </div>
 
@@ -73,7 +115,7 @@ const Contact = () => {
               type="submit"
               className="w-fit py-1.5 px-4 text-sm bg-white text-black rounded-full hover:bg-white/90 transition-all active:scale-95"
             >
-              Send Message
+              Submit →
             </button>
           </Reveal>
         </div>

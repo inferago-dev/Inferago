@@ -21,12 +21,12 @@ const team = [
   },
   {
     role: "Backend & Infrastructure",
-    desc: "Building the core systems the platform runs on.",
+    desc: "Building the core systems our platform and client products run on.",
     icon: FiServer,
   },
   {
-    role: "Frontend",
-    desc: "Crafting the interface engineers and teams rely on daily.",
+    role: "Product Engineering",
+    desc: "Designing and building digital products for clients under Inferago Web.",
     icon: FiLayout,
   },
   {
@@ -49,14 +49,14 @@ const About = () => {
         {/* Title */}
         <Reveal className="text-center mb-7 md:mb-14">
           <div className="text-sm tracking-normal text-white">
-            ABOUT US
+            WHY INFERAGO EXISTS
           </div>
         </Reveal>
 
         {/* Main Heading */}
         <Reveal delay={60}>
           <p className="text-2xl md:text-3xl mb-8 md:mb-10 z-50 text-white leading-8 md:leading-11 text-center tracking-tight inter-medium max-w-3xl mx-auto">
-            Building the Infrastructure Layer for AI Governance
+            Building the systems behind what&rsquo;s next.
           </p>
         </Reveal>
 
@@ -74,10 +74,12 @@ const About = () => {
               <p className="text-sm md:text-base text-white/60 inter-light leading-relaxed max-w-3xl mx-auto text-center">
                 Inferago started from a simple observation: organizations are rapidly adopting AI and
                 automation, but the security, governance, and operational controls around these systems
-                are still developing. We began exploring how AI-driven workflows could be monitored,
-                understood, and governed at runtime — which led to the idea of building an infrastructure
-                layer specifically for AI systems. We&rsquo;re still early and still validating the product, but
-                that&rsquo;s the problem we&rsquo;re building toward.
+                are still developing. Exploring how AI-driven workflows could be monitored, understood,
+                and governed at runtime led to the idea of building an infrastructure layer specifically
+                for AI systems — that&rsquo;s Inferago AI. Building and shipping real client products —
+                Inferago Web — became how we fund that work and sharpen the engineering behind it. We&rsquo;re
+                still early and still validating the AI product, but that&rsquo;s the company we&rsquo;re building
+                toward: one technology company working in both directions.
               </p>
             </div>
           </div>
@@ -88,30 +90,40 @@ const About = () => {
           <Reveal delay={80} className="glass-badge card-lift rounded-2xl p-6 md:p-8">
             <div className="text-xs basier-mono tracking-tighter text-white/40 mb-3">MISSION</div>
             <p className="text-white/80 text-sm md:text-base leading-relaxed inter-light">
-              Make AI systems more secure, observable, and controllable in real-world environments.
+              Make AI systems more secure, observable, and controllable in real-world environments —
+              and build digital products businesses can actually run on.
             </p>
           </Reveal>
           <Reveal delay={160} className="glass-badge card-lift rounded-2xl p-6 md:p-8">
             <div className="text-xs basier-mono tracking-tighter text-white/40 mb-3">VISION</div>
             <p className="text-white/80 text-sm md:text-base leading-relaxed inter-light">
-              Build the infrastructure layer that organizations can rely on to securely operate and govern
-              AI systems at scale.
+              Build the infrastructure layer that organizations rely on to securely operate AI at scale,
+              backed by a product engineering practice good enough to build it on.
             </p>
           </Reveal>
         </div>
 
         {/* Approach */}
-        <Reveal delay={100} className="mb-10 md:mb-16 max-w-3xl mx-auto text-center">
-          <div className="text-xs basier-mono tracking-tighter text-white/40 mb-3">OUR APPROACH</div>
-          <p className="text-white/60 text-sm md:text-base leading-relaxed inter-light">
-            Inferago focuses on runtime governance — looking beyond individual model or prompt calls to
-            the full picture of AI-driven workflows: their interactions, risks, and decisions. Tools like
-            Datadog, LangSmith, and MLflow already cover important parts of the observability and MLOps
-            stack. Inferago&rsquo;s role is to sit at the governance layer above them, combining security-first
-            monitoring with human oversight so organizations can identify risky behavior and introduce
-            review or control exactly where it&rsquo;s needed.
-          </p>
-        </Reveal>
+        <div className="grid md:grid-cols-2 gap-4 mb-10 md:mb-16">
+          <Reveal delay={100} className="glass-badge card-lift rounded-2xl p-6 md:p-8">
+            <div className="text-xs basier-mono tracking-tighter text-white/40 mb-3">INTELLIGENCE</div>
+            <p className="text-white/60 text-sm md:text-base leading-relaxed inter-light">
+              Inferago AI focuses on runtime governance — looking beyond individual model or prompt calls
+              to the full picture of AI-driven workflows: their interactions, risks, and decisions. Tools
+              like Datadog, LangSmith, and MLflow already cover important parts of the observability and
+              MLOps stack. Inferago&rsquo;s role is to sit at the governance layer above them, combining
+              security-first monitoring with human oversight.
+            </p>
+          </Reveal>
+          <Reveal delay={160} className="glass-badge card-lift rounded-2xl p-6 md:p-8">
+            <div className="text-xs basier-mono tracking-tighter text-white/40 mb-3">PRODUCTS</div>
+            <p className="text-white/60 text-sm md:text-base leading-relaxed inter-light">
+              Inferago Web is product first, engineering always — we don&rsquo;t sell development hours, we
+              design and build products end to end. It&rsquo;s also where we learn: every client project
+              teaches us something that feeds back into how we build the next system.
+            </p>
+          </Reveal>
+        </div>
 
         {/* Team */}
         <Reveal delay={60} className="text-center mb-6 md:mb-10">
