@@ -31,6 +31,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/ai" element={<AiPage />} />
         <Route path="/web" element={<WebPage />} />
+        <Route path="/services" element={<WebPage />} />
         <Route path="/work" element={<WorkPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
