@@ -1,5 +1,5 @@
 // components/Reveal.jsx
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const Reveal = ({ children, delay = 0, className = "", as: Tag = "div", ...rest }) => {
   const ref = useRef(null);
@@ -9,6 +9,13 @@ const Reveal = ({ children, delay = 0, className = "", as: Tag = "div", ...rest 
     const node = ref.current;
     if (!node) return;
 
+    // Check if element is already in viewport initially
+    const rect = node.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom >= 0) {
+      setVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -16,7 +23,7 @@ const Reveal = ({ children, delay = 0, className = "", as: Tag = "div", ...rest 
           observer.unobserve(node);
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+      { threshold: 0.05, rootMargin: "0px 0px -20px 0px" }
     );
 
     observer.observe(node);

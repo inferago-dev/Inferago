@@ -1,431 +1,310 @@
 // components/Flowchart.jsx
-
-import React, { useId } from "react";
-import { FiLock } from "react-icons/fi";
+import React, { useState } from "react";
+import { FiLock, FiShield, FiActivity, FiCpu, FiCheckCircle } from "react-icons/fi";
 import { LuChartLine, LuScanEye } from "react-icons/lu";
-import { BsPlusLg } from "react-icons/bs";
 import { RiGitBranchLine } from "react-icons/ri";
+import { BsPlusLg } from "react-icons/bs";
 import Reveal from "./Reveal";
 
+const nodes = [
+  {
+    id: "security",
+    title: "Security & Guardrails",
+    shortDesc: "Real-time prompt shield & token isolation",
+    fullDesc: "Intercepts and scans incoming prompts and outgoing model payloads for prompt injections, jailbreaks, PII leakage, and unauthorized tool invocations in sub-15ms.",
+    stats: "Sub-15ms latency • 99.98% accuracy",
+    icon: FiLock,
+    color: "text-orange-400",
+    bg: "bg-orange-500/10",
+    border: "border-orange-500/30",
+  },
+  {
+    id: "automation",
+    title: "Agent Orchestration",
+    shortDesc: "Intelligent workflow coordination",
+    fullDesc: "Sandboxes autonomous agent execution, coordinates multi-agent handoffs, and ensures tool execution follows deterministic business constraints.",
+    stats: "Multi-agent routing • Tool sandboxing",
+    icon: RiGitBranchLine,
+    color: "text-amber-400",
+    bg: "bg-amber-500/10",
+    border: "border-amber-500/30",
+  },
+  {
+    id: "monitoring",
+    title: "Real-time Monitoring",
+    shortDesc: "Continuous runtime telemetry & alerts",
+    fullDesc: "Provides instant visibility into token velocity, hallucination indices, API error rates, and rogue execution loops with automated kill-switches.",
+    stats: "Live telemetry • Automated kill-switch",
+    icon: LuScanEye,
+    color: "text-blue-400",
+    bg: "bg-blue-500/10",
+    border: "border-blue-500/30",
+  },
+  {
+    id: "analytics",
+    title: "Audit & Risk Analytics",
+    shortDesc: "Comprehensive compliance & cost intelligence",
+    fullDesc: "Generates immutable audit trails, model cost breakdowns, and compliance reporting ready for SOC2, HIPAA, and ISO27001 certification frameworks.",
+    stats: "SOC2/HIPAA ready • Cryptographic logs",
+    icon: LuChartLine,
+    color: "text-emerald-400",
+    bg: "bg-emerald-500/10",
+    border: "border-emerald-500/30",
+  },
+];
+
 const Flowchart = () => {
+  const [selectedNode, setSelectedNode] = useState(nodes[0]);
+
   return (
-    <section className="relative inter-regular bg-transparent overflow-hidden flex items-center justify-center -mt-px">
-
-      {/* Grid Background */}
-      <div
-        className="absolute inset-0 bg-grid pointer-events-none z-0 opacity-30"
-        style={{ top: "-55px" }}
-      />
-
-      {/* Gradient Blob */}
-      <div
-        className="absolute -bottom-130 left-1/2 -translate-x-1/2 w-[800px] h-[600px]
-        bg-[linear-gradient(90deg,#FF3300_0%,#FFCB83_40%,#0077FF_85%)]
-        opacity-70 blur-[90px] z-0"
-      />
-
-      <Reveal className="max-w-7xl mx-auto relative z-10 w-full">
-
-        {/* ========================= */}
-        {/* DESKTOP VIEW - UNCHANGED */}
-        {/* ========================= */}
-
-        <div className="relative h-[600px] max-w-[1100px] mx-auto hidden md:block">
-
-          {/* SVG CONNECTIONS */}
-          <svg
-            className="absolute inset-0 w-full h-full pointer-events-none z-10"
-            viewBox="0 0 1100 600"
-            fill="none"
-          >
-            <defs>
-              <linearGradient id="lineFadeLeft" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="white" stopOpacity="1" />
-                <stop offset="100%" stopColor="white" stopOpacity="0" />
-              </linearGradient>
-
-              <linearGradient id="lineFadeRight" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="white" stopOpacity="0" />
-                <stop offset="100%" stopColor="white" stopOpacity="1" />
-              </linearGradient>
-            </defs>
-
-            {/* LEFT TOP */}
-            <g>
-              <circle cx="320" cy="190" r="2.5" fill="white" />
-              <path
-                d="M 320 190 H 380 C 440 190, 420 285, 460 285 H 534"
-                stroke="url(#lineFadeLeft)"
-                strokeWidth={2}
-                strokeDasharray="2 3"
-                fill="none"
-              />
-            </g>
-
-            {/* LEFT BOTTOM */}
-            <g>
-              <circle cx="320" cy="410" r="2.5" fill="white" />
-              <path
-                d="M 320 410 H 380 C 440 410, 420 315, 460 315 H 534"
-                stroke="url(#lineFadeLeft)"
-                strokeWidth={2}
-                strokeDasharray="2 3"
-                fill="none"
-              />
-            </g>
-
-            {/* RIGHT TOP */}
-            <g>
-              <circle cx="780" cy="190" r="2.5" fill="white" />
-              <path
-                d="M 780 190 H 720 C 660 190, 680 285, 640 285 H 566"
-                stroke="url(#lineFadeRight)"
-                strokeWidth={2}
-                strokeDasharray="2 3"
-                fill="none"
-              />
-            </g>
-
-            {/* RIGHT BOTTOM */}
-            <g>
-              <circle cx="780" cy="410" r="2.5" fill="white" />
-              <path
-                d="M 780 410 H 720 C 660 410, 680 315, 640 315 H 566"
-                stroke="url(#lineFadeRight)"
-                strokeWidth={2}
-                strokeDasharray="2 3"
-                fill="none"
-              />
-            </g>
-
-          </svg>
-
-          {/* CENTER CORE */}
-          <div className="absolute inset-0 flex items-center justify-center z-20">
-
-            <div
-              className="absolute w-[160px] h-[160px] rounded-xl blur-[30px]"
-              style={{
-                background:
-                  "linear-gradient(135deg, #FF3300 0%, #FFCB83 45%, #0077FF 100%)",
-              }}
-            />
-
-            <div className="absolute w-[130px] h-[130px] rounded-4xl bg-white/5 border border-white/10 backdrop-blur-xl" />
-
-            <div className="relative w-26 h-26 bg-black rounded-3xl flex items-center justify-center border border-white/5">
-
-              <img src="./Infer_White.png" className="w-14 h-14" alt="Infer" />
-
-              <div className="absolute -top-8 -left-8 text-white text-lg"><BsPlusLg /></div>
-              <div className="absolute -top-8 -right-8 text-white text-lg"><BsPlusLg /></div>
-              <div className="absolute -bottom-8 -left-8 text-white text-lg"><BsPlusLg /></div>
-              <div className="absolute -bottom-8 -right-8 text-white text-lg"><BsPlusLg /></div>
-
-            </div>
-
-          </div>
-
-          {/* FEATURE CARDS DESKTOP */}
-
-          <div className="absolute inset-0 pointer-events-none">
-
-            <div className="absolute left-[75px] top-0 bottom-0 w-[240px] pointer-events-auto">
-
-              <div
-                style={{ top: "190px", transform: "translateY(-50%)" }}
-                className="absolute"
-              >
-                <FeatureCard
-                  Icon={FiLock}
-                  title="Security"
-                  desc="Protect AI agents with trusted safeguards"
-                  isStrokeOnly
-                />
-              </div>
-
-              <div
-                style={{ top: "410px", transform: "translateY(-50%)" }}
-                className="absolute"
-              >
-                <FeatureCard
-                  Icon={RiGitBranchLine}
-                  title="Automation"
-                  desc="Streamline tasks with intelligent agent workflows"
-                />
-              </div>
-
-            </div>
-
-            <div className="absolute right-[75px] top-0 bottom-0 w-[240px] pointer-events-auto">
-
-              <div
-                style={{ top: "190px", transform: "translateY(-50%)" }}
-                className="absolute right-0"
-              >
-                <FeatureCard
-                  Icon={LuChartLine}
-                  title="Analytics"
-                  desc="Gain actionable insights from agent performance."
-                  isStrokeOnly
-                />
-              </div>
-
-              <div
-                style={{ top: "410px", transform: "translateY(-50%)" }}
-                className="absolute right-0"
-              >
-                <FeatureCard
-                  Icon={LuScanEye}
-                  title="Real-time Monitoring"
-                  desc="Track activities instantly with transparent oversight."
-                  isStrokeOnly
-                />
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        {/* ========================= */}
-        {/* MOBILE VIEW — IMPROVED */}
-        {/* ========================= */}
-
-        <div className="md:hidden flex flex-col items-center justify-center gap-6 py-10 px-3">
-
-          {/* TOP CARDS */}
-
-          <div className="flex justify-center gap-2 w-full max-w-[280px]">
-            <div className="flex-1">
-              <FeatureCard Icon={FiLock} title="Security" isStrokeOnly />
-            </div>
-
-            <div className="flex-1">
-              <FeatureCard Icon={LuChartLine} title="Analytics" isStrokeOnly />
-            </div>
-          </div>
-
-          {/* CENTER */}
-
-          <div className="relative flex items-center justify-center my-2">
-
-            <div className="absolute w-[100px] h-[100px] rounded-3xl bg-white/10 border border-white/20 backdrop-blur-xl z-0" />
-
-            {/* MOBILE SVG */}
-
-            <svg
-              className="absolute w-[300px] h-[260px] z-10"
-              viewBox="0 0 300 260"
-              fill="none"
-            >
-
-              <defs>
-
-                <linearGradient id="mobileLeft" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="white" stopOpacity="0.9" />
-                  <stop offset="100%" stopColor="white" stopOpacity="0.2" />
-                </linearGradient>
-
-                <linearGradient id="mobileRight" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="white" stopOpacity="0.2" />
-                  <stop offset="100%" stopColor="white" stopOpacity="0.9" />
-                </linearGradient>
-
-              </defs>
-
-              {/* CENTER DOT */}
-              <circle cx="150" cy="130" r="2" fill="white" />
-
-              {/* ======================= */}
-              {/* TOP LEFT — shifted UP */}
-              {/* ======================= */}
-
-              <path
-                d="
-      M105 124
-      H78
-      C74 124, 70 120, 70 116
-      V60
-    "
-                stroke="url(#mobileLeft)"
-                strokeWidth="1.8"
-                strokeDasharray="2 3"
-                fill="none"
-              />
-
-              <circle cx="70" cy="60" r="2.8" fill="white" />
-
-              {/* ======================= */}
-              {/* TOP RIGHT — shifted UP */}
-              {/* ======================= */}
-
-              <path
-                d="
-      M195 124
-      H222
-      C226 124, 230 120, 230 116
-      V60
-    "
-                stroke="url(#mobileRight)"
-                strokeWidth="1.8"
-                strokeDasharray="2 3"
-                fill="none"
-              />
-
-              <circle cx="230" cy="60" r="2.8" fill="white" />
-
-              {/* ======================= */}
-              {/* BOTTOM LEFT — shifted DOWN */}
-              {/* ======================= */}
-
-              <path
-                d="
-      M105 136
-      H78
-      C74 136, 70 140, 70 144
-      V200
-    "
-                stroke="url(#mobileLeft)"
-                strokeWidth="1.8"
-                strokeDasharray="2 3"
-                fill="none"
-              />
-
-              <circle cx="70" cy="200" r="2.8" fill="white" />
-
-              {/* ======================= */}
-              {/* BOTTOM RIGHT — shifted DOWN */}
-              {/* ======================= */}
-
-              <path
-                d="
-      M195 136
-      H222
-      C226 136, 230 140, 230 144
-      V200
-    "
-                stroke="url(#mobileRight)"
-                strokeWidth="1.8"
-                strokeDasharray="2 3"
-                fill="none"
-              />
-
-              <circle cx="230" cy="200" r="2.8" fill="white" />
-
-            </svg>
-            {/* CENTER LOGO */}
-
-            <div className="relative z-20 w-20 h-20 bg-black rounded-2xl flex items-center justify-center border border-white/5">
-
-              <img
-                src="./Infer_White.png"
-                className="w-10 h-10"
-                alt="Infer"
-              />
-
-            </div>
-
-          </div>
-
-          {/* BOTTOM CARDS */}
-
-          <div className="flex justify-center gap-2 w-full max-w-[280px]">
-
-            <div className="flex-1">
-              <FeatureCard Icon={RiGitBranchLine} title="Automation" />
-            </div>
-
-            <div className="flex-1">
-              <FeatureCard Icon={LuScanEye} title="Real-time Monitoring" isStrokeOnly />
-            </div>
-
-          </div>
-
-        </div>
-
+    <section className="relative py-12 md:py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto overflow-hidden">
+      {/* Background Ambient Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gradient-to-r from-orange-500/10 via-amber-500/5 to-blue-500/10 blur-[130px] rounded-full pointer-events-none" />
+
+      <Reveal className="text-center mb-10">
+        <span className="text-xs font-mono text-white/40 uppercase tracking-wider">
+          SYSTEM ARCHITECTURE
+        </span>
+        <h2 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight mt-1">
+          The Inferago Governance Mesh
+        </h2>
+        <p className="text-xs sm:text-sm text-white/50 font-light mt-2 max-w-xl mx-auto">
+          Click on any architectural node to inspect its telemetry, security safeguards, and runtime performance.
+        </p>
       </Reveal>
 
-    </section>
-  );
-};
+      {/* ===================== DESKTOP ARCHITECTURE CANVAS ===================== */}
+      <Reveal delay={100} className="hidden md:block relative h-[520px] max-w-[1000px] mx-auto glass-panel rounded-3xl p-6 border border-white/10 overflow-hidden">
+        {/* SVG Wiring Canvas */}
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none z-10"
+          viewBox="0 0 1000 520"
+          fill="none"
+        >
+          <defs>
+            <linearGradient id="gradOrange" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#ff4500" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#fff" stopOpacity="0.3" />
+            </linearGradient>
+            <linearGradient id="gradAmber" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#ffcb83" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#fff" stopOpacity="0.3" />
+            </linearGradient>
+            <linearGradient id="gradBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#fff" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#0077ff" stopOpacity="0.8" />
+            </linearGradient>
+            <linearGradient id="gradEmerald" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#fff" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#10b981" stopOpacity="0.8" />
+            </linearGradient>
+          </defs>
 
-/* FEATURE CARD — Reduced Padding */
-
-const FeatureCard = ({
-  Icon,
-  title,
-  desc,
-  isStrokeOnly = false,
-  iconSize = 18,
-  strokeWidth = 2.2,
-}) => {
-
-  const uniqueId = useId();
-
-  const gradientId = `feature-grad-${title
-    .toLowerCase()
-    .replace(/\s+/g, "-")}-${uniqueId}`;
-
-  return (
-
-    <div className="group w-full glass-badge p-3 rounded-2xl transition-all duration-300 hover:scale-[1.02]">
-
-      <div className="flex items-center gap-2">
-
-        <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center relative overflow-hidden">
-
-          <svg width="0" height="0" className="absolute">
-            <defs>
-
-              <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="white" stopOpacity="1" />
-                <stop offset="100%" stopColor="white" stopOpacity="0.6" />
-              </linearGradient>
-
-            </defs>
-          </svg>
-
-          <Icon
-            size={iconSize}
-            style={{
-              ...(isStrokeOnly
-                ? {
-                  stroke: `url(#${gradientId})`,
-                  strokeWidth,
-                  fill: "transparent",
-                }
-                : {
-                  fill: `url(#${gradientId})`,
-                  stroke: `url(#${gradientId})`,
-                  strokeWidth: 0,
-                }),
-            }}
+          {/* Top-Left to Center */}
+          <path
+            d="M 280 150 H 380 C 440 150, 440 260, 490 260"
+            stroke="url(#gradOrange)"
+            strokeWidth="2"
+            className="animate-flow-line"
           />
+          {/* Bottom-Left to Center */}
+          <path
+            d="M 280 370 H 380 C 440 370, 440 260, 490 260"
+            stroke="url(#gradAmber)"
+            strokeWidth="2"
+            className="animate-flow-line"
+          />
+          {/* Center to Top-Right */}
+          <path
+            d="M 510 260 C 560 260, 560 150, 620 150 H 720"
+            stroke="url(#gradBlue)"
+            strokeWidth="2"
+            className="animate-flow-line"
+          />
+          {/* Center to Bottom-Right */}
+          <path
+            d="M 510 260 C 560 260, 560 370, 620 370 H 720"
+            stroke="url(#gradEmerald)"
+            strokeWidth="2"
+            className="animate-flow-line"
+          />
+        </svg>
 
+        {/* CENTER CORE */}
+        <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+          <div className="relative flex flex-col items-center">
+            <div className="absolute w-36 h-36 rounded-full bg-gradient-to-tr from-orange-500/30 via-amber-500/20 to-blue-500/30 blur-xl animate-pulse" />
+            <div className="relative w-28 h-28 rounded-3xl bg-[#090b10] border border-white/20 flex flex-col items-center justify-center shadow-2xl backdrop-blur-xl">
+              <img
+                src="/Infer_White.png"
+                alt="Core"
+                className="w-12 h-12 object-contain"
+              />
+              <span className="text-[9px] font-mono text-white/60 mt-1">ENGINE CORE</span>
+            </div>
+            <div className="mt-3 px-2.5 py-0.5 rounded-full bg-white/10 text-[10px] font-mono text-emerald-400 border border-white/10">
+              18.4K req/s Active
+            </div>
+          </div>
         </div>
 
-        <div>
-
-          <h3 className="text-white text-sm tracking-tight leading-none">
-            {title}
-          </h3>
-
-          {desc && (
-            <p className="hidden md:block text-white/50 text-xs leading-tight mt-1 inter-light">
-              {desc}
+        {/* NODE 1: TOP LEFT */}
+        <div className="absolute left-8 top-16 w-64 z-30">
+          <button
+            onClick={() => setSelectedNode(nodes[0])}
+            className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 card-lift ${
+              selectedNode.id === "security"
+                ? "bg-white/[0.08] border-orange-400/60 shadow-lg shadow-orange-500/10"
+                : "bg-white/[0.03] border-white/10 hover:border-white/20"
+            }`}
+          >
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400">
+                <FiLock size={16} />
+              </div>
+              <div>
+                <h4 className="text-xs font-semibold text-white">Security & Guardrails</h4>
+                <span className="text-[10px] font-mono text-orange-400/80">Sub-15ms</span>
+              </div>
+            </div>
+            <p className="text-[11px] text-white/50 leading-relaxed font-light">
+              Real-time prompt shield & token isolation
             </p>
-          )}
-
+          </button>
         </div>
 
+        {/* NODE 2: BOTTOM LEFT */}
+        <div className="absolute left-8 bottom-16 w-64 z-30">
+          <button
+            onClick={() => setSelectedNode(nodes[1])}
+            className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 card-lift ${
+              selectedNode.id === "automation"
+                ? "bg-white/[0.08] border-amber-400/60 shadow-lg shadow-amber-500/10"
+                : "bg-white/[0.03] border-white/10 hover:border-white/20"
+            }`}
+          >
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+                <RiGitBranchLine size={16} />
+              </div>
+              <div>
+                <h4 className="text-xs font-semibold text-white">Agent Orchestration</h4>
+                <span className="text-[10px] font-mono text-amber-400/80">Sandboxed</span>
+              </div>
+            </div>
+            <p className="text-[11px] text-white/50 leading-relaxed font-light">
+              Intelligent workflow coordination
+            </p>
+          </button>
+        </div>
+
+        {/* NODE 3: TOP RIGHT */}
+        <div className="absolute right-8 top-16 w-64 z-30">
+          <button
+            onClick={() => setSelectedNode(nodes[2])}
+            className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 card-lift ${
+              selectedNode.id === "monitoring"
+                ? "bg-white/[0.08] border-blue-400/60 shadow-lg shadow-blue-500/10"
+                : "bg-white/[0.03] border-white/10 hover:border-white/20"
+            }`}
+          >
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                <LuScanEye size={16} />
+              </div>
+              <div>
+                <h4 className="text-xs font-semibold text-white">Real-time Monitoring</h4>
+                <span className="text-[10px] font-mono text-blue-400/80">Live Telemetry</span>
+              </div>
+            </div>
+            <p className="text-[11px] text-white/50 leading-relaxed font-light">
+              Continuous runtime telemetry & alerts
+            </p>
+          </button>
+        </div>
+
+        {/* NODE 4: BOTTOM RIGHT */}
+        <div className="absolute right-8 bottom-16 w-64 z-30">
+          <button
+            onClick={() => setSelectedNode(nodes[3])}
+            className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 card-lift ${
+              selectedNode.id === "analytics"
+                ? "bg-white/[0.08] border-emerald-400/60 shadow-lg shadow-emerald-500/10"
+                : "bg-white/[0.03] border-white/10 hover:border-white/20"
+            }`}
+          >
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                <LuChartLine size={16} />
+              </div>
+              <div>
+                <h4 className="text-xs font-semibold text-white">Audit & Risk Analytics</h4>
+                <span className="text-[10px] font-mono text-emerald-400/80">SOC2 Ready</span>
+              </div>
+            </div>
+            <p className="text-[11px] text-white/50 leading-relaxed font-light">
+              Comprehensive compliance & cost intelligence
+            </p>
+          </button>
+        </div>
+      </Reveal>
+
+      {/* ===================== MOBILE ARCHITECTURE LIST ===================== */}
+      <div className="md:hidden space-y-3">
+        {nodes.map((node) => {
+          const Icon = node.icon;
+          const isSelected = selectedNode.id === node.id;
+          return (
+            <button
+              key={node.id}
+              onClick={() => setSelectedNode(node)}
+              className={`w-full text-left p-4 rounded-2xl border transition-all ${
+                isSelected
+                  ? "bg-white/[0.08] border-white/30"
+                  : "bg-white/[0.02] border-white/10"
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <div className={`w-8 h-8 rounded-lg ${node.bg} ${node.border} border flex items-center justify-center ${node.color}`}>
+                  <Icon size={16} />
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-sm font-medium text-white">{node.title}</h4>
+                  <p className="text-xs text-white/50">{node.shortDesc}</p>
+                </div>
+              </div>
+            </button>
+          );
+        })}
       </div>
 
-    </div>
+      {/* ===================== SELECTED NODE INSPECTOR PANEL ===================== */}
+      <Reveal delay={150} className="mt-6 glass-panel rounded-2xl p-5 sm:p-6 border border-white/10">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-white/10">
+          <div className="flex items-center gap-3">
+            <div className={`w-8 h-8 rounded-lg ${selectedNode.bg} border ${selectedNode.border} flex items-center justify-center ${selectedNode.color}`}>
+              {React.createElement(selectedNode.icon, { size: 16 })}
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-white">
+                {selectedNode.title} Node Specification
+              </h3>
+              <span className="text-xs font-mono text-white/40">
+                ACTIVE CLUSTER INSTANCE #inf-node-{selectedNode.id}
+              </span>
+            </div>
+          </div>
+          <span className="text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full w-fit">
+            {selectedNode.stats}
+          </span>
+        </div>
 
+        <p className="mt-4 text-xs sm:text-sm text-white/70 font-light leading-relaxed">
+          {selectedNode.fullDesc}
+        </p>
+      </Reveal>
+    </section>
   );
-
 };
 
 export default Flowchart;

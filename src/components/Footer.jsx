@@ -1,167 +1,166 @@
 // components/Footer.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  FaInstagram,
-  FaXTwitter,
-  FaLinkedin,
-} from "react-icons/fa6";
+import { FaInstagram, FaXTwitter, FaLinkedin, FaGithub } from "react-icons/fa6";
+import { FiArrowUpRight, FiShield, FiHeart } from "react-icons/fi";
 
 const Footer = () => {
   return (
-    <footer className="bg-black inter-light pt-10 pb-10">
-      <div className="max-w-7xl mx-auto px-6">
+    <footer className="relative bg-[#050608] border-t border-white/[0.08] text-white pt-16 pb-12 overflow-hidden">
+      {/* Background Grid */}
+      <div className="absolute inset-0 bg-grid opacity-15 pointer-events-none" />
 
-        {/* Main Grid */}
-        <div className="flex flex-col items-center text-center w-full gap-y-12">
-
-          {/* Logo */}
-          <div className="flex flex-col items-center w-full">
-
-            <div className="flex items-center justify-center gap-3 mb-6">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pb-14 border-b border-white/[0.08]">
+          {/* Brand & Mission Info */}
+          <div className="md:col-span-5 space-y-4">
+            <Link to="/" className="inline-block">
               <img
-                src="./Infer_Full.png"
-                alt="Infer"
-                className="h-12 md:h-14 w-auto object-contain"
+                src="/Infer_Full.png"
+                alt="Inferago"
+                className="h-9 w-auto object-contain"
               />
-            </div>
-
-            <p className="text-white/40 text-md md:text-sm tracking-wide max-w-md mx-auto text-center">
-              Precision in Every Decision.
+            </Link>
+            <p className="text-xs sm:text-sm text-white/50 font-light max-w-sm leading-relaxed">
+              The operating system for autonomous AI systems and high-velocity
+              product engineering. Building the systems behind what&rsquo;s next.
             </p>
 
+            <div className="pt-2 flex items-center gap-2 text-xs font-mono text-white/60">
+              <span className="flex h-2 w-2 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span className="text-emerald-400">All Clusters Operational</span>
+              <span className="text-white/30">•</span>
+              <span className="text-white/40">v2.4 Production</span>
+            </div>
           </div>
 
-          {/* Pages + Resources Wrapper */}
-          <div className="w-full flex justify-center">
-
-            {/* Pages + Resources Side-by-Side */}
-            <div className="flex flex-wrap justify-center gap-x-12 md:gap-x-24 gap-y-10 text-left">
-
-              {/* Pages */}
-              <div>
-
-                <div className="text-xs uppercase tracking-wide text-white/50 mb-3 md:mb-6">
-                  PAGES
-                </div>
-
-                <div className="space-y-2 text-xs tracking-wide text-white/70">
-                  <Link to="/" className="block hover:text-white transition-colors">
-                    HOME
+          {/* Quick Links Sitemaps */}
+          <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">
+            {/* Navigation */}
+            <div>
+              <span className="text-xs font-mono text-white/40 uppercase tracking-widest block mb-4">
+                PLATFORM
+              </span>
+              <ul className="space-y-2.5 text-xs text-white/60 font-light">
+                <li>
+                  <Link to="/" className="hover:text-white transition-colors">
+                    Home Overview
                   </Link>
-
-                  <Link to="/ai" className="block hover:text-white transition-colors">
-                    AI
+                </li>
+                <li>
+                  <Link to="/ai" className="hover:text-white transition-colors">
+                    AI Governance
                   </Link>
-
-                  <Link to="/web" className="block hover:text-white transition-colors">
-                    WEB
+                </li>
+                <li>
+                  <Link to="/web" className="hover:text-white transition-colors">
+                    Web Engineering
                   </Link>
-
-                  <Link to="/work" className="block hover:text-white transition-colors">
-                    WORK
+                </li>
+                <li>
+                  <Link to="/work" className="hover:text-white transition-colors">
+                    Case Studies
                   </Link>
-
-                  <Link to="/about" className="block hover:text-white transition-colors">
-                    ABOUT
+                </li>
+                <li>
+                  <Link to="/about" className="hover:text-white transition-colors">
+                    About Studio
                   </Link>
-
-                  <Link to="/contact" className="block hover:text-white transition-colors">
-                    CONTACT
-                  </Link>
-                </div>
-
-              </div>
-
-              {/* Resources */}
-              <div>
-
-                <div className="text-xs uppercase tracking-wide text-white/50 mb-3 md:mb-6">
-                  RESOURCES
-                </div>
-
-                <div className="space-y-2 text-xs tracking-wide text-white/70">
-                  <Link
-                    to="/ai"
-                    className="block hover:text-white transition-colors"
-                  >
-                    DOCUMENTATION
-                  </Link>
-
-                  <Link
-                    to="/ai"
-                    className="block hover:text-white transition-colors"
-                  >
-                    CLI & SDK
-                  </Link>
-
-                  <Link
-                    to="/ai"
-                    className="block hover:text-white transition-colors"
-                  >
-                    INTEGRATIONS
-                  </Link>
-                </div>
-
-              </div>
-
-              {/* Connect */}
-              <div className="col-span-2 md:col-span-1">
-
-                <div className="text-xs uppercase tracking-wide text-white/50 mb-6 text-center">
-                  CONNECT
-                </div>
-
-                <div className="flex justify-center gap-3 text-xl text-white/60">
-
-                  <a href="https://www.instagram.com/inferagoai/" target="_blank" rel="noopener noreferrer" className="icon-pop hover:text-white" aria-label="Instagram">
-                    <FaInstagram />
-                  </a>
-
-                  <a
-                    href="https://x.com/InferagoAi"
-                    target="_blank" rel="noopener noreferrer"
-                    className="icon-pop hover:text-white"
-                    aria-label="X (Twitter)"
-                  >
-                    <FaXTwitter />
-                  </a>
-
-                  <a href="https://www.linkedin.com/company/inferago2025/" target="_blank" rel="noopener noreferrer" className="icon-pop hover:text-white" aria-label="LinkedIn">
-                    <FaLinkedin />
-                  </a>
-
-                </div>
-
-              </div>
-
+                </li>
+              </ul>
             </div>
 
-          </div>
+            {/* Architecture & Docs */}
+            <div>
+              <span className="text-xs font-mono text-white/40 uppercase tracking-widest block mb-4">
+                ENGINEERING
+              </span>
+              <ul className="space-y-2.5 text-xs text-white/60 font-light">
+                <li>
+                  <Link to="/ai" className="hover:text-white transition-colors">
+                    Runtime Guardrails
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/ai" className="hover:text-white transition-colors">
+                    CLI & Python SDK
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/ai" className="hover:text-white transition-colors">
+                    Telemetry Stream
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/work" className="hover:text-white transition-colors">
+                    AgentGate Proxy
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
+            {/* Connect & Social */}
+            <div>
+              <span className="text-xs font-mono text-white/40 uppercase tracking-widest block mb-4">
+                CONNECT
+              </span>
+              <div className="flex items-center gap-3 text-lg text-white/60 mb-4">
+                <a
+                  href="https://www.instagram.com/inferagoai/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="hover:text-white transition-colors"
+                >
+                  <FaInstagram />
+                </a>
+                <a
+                  href="https://x.com/InferagoAi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="X (Twitter)"
+                  className="hover:text-white transition-colors"
+                >
+                  <FaXTwitter />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/inferago2025/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="hover:text-white transition-colors"
+                >
+                  <FaLinkedin />
+                </a>
+              </div>
+              <Link
+                to="/contact"
+                className="text-xs font-mono text-orange-400 hover:text-orange-300 transition-colors inline-flex items-center gap-1"
+              >
+                <span>Initiate Project</span>
+                <FiArrowUpRight />
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-10 pt-8 border-t border-white/10">
-
-          <div className="flex flex-col md:flex-row items-center justify-center text-center gap-x-10 gap-y-3 text-xs text-white/40 tracking-wide">
-
-            <p>© {new Date().getFullYear()} INFERAGO</p>
-
-            <p>ALL RIGHTS RESERVED</p>
-
-            <Link to="/privacy" className="hover:text-white/70 transition-colors">
-              PRIVACY POLICY
-            </Link>
-
-            <Link to="/terms" className="hover:text-white/70 transition-colors">
-              TERMS OF SERVICE
-            </Link>
-
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-white/40">
+          <div>
+            © {new Date().getFullYear()} Inferago Technologies Inc. All rights reserved.
           </div>
-
+          <div className="flex items-center gap-6">
+            <Link to="/privacy" className="hover:text-white/70 transition-colors">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className="hover:text-white/70 transition-colors">
+              Terms of Service
+            </Link>
+          </div>
         </div>
-
       </div>
     </footer>
   );

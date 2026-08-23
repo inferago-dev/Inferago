@@ -1,157 +1,236 @@
 // components/About.jsx
 import React from "react";
-import { FiUser, FiCpu, FiShield, FiServer, FiLayout, FiCloud, FiCompass } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import {
+  FiCpu,
+  FiShield,
+  FiServer,
+  FiLayout,
+  FiCloud,
+  FiCompass,
+  FiZap,
+  FiLock,
+  FiCheckCircle,
+  FiArrowUpRight,
+} from "react-icons/fi";
 import Reveal from "./Reveal";
 
-const team = [
+const engineeringDisciplines = [
   {
-    role: "Founder / Product & Technology",
-    desc: "Setting product direction and technical strategy.",
-    icon: FiUser,
-  },
-  {
-    role: "AI/ML Engineering",
-    desc: "Building the models and systems behind runtime governance.",
+    role: "AI / ML Runtime Governance",
+    desc: "Developing low-latency semantic interceptors, token-level policy engines, and prompt injection defense models.",
     icon: FiCpu,
+    color: "text-orange-400",
   },
   {
-    role: "Cybersecurity",
-    desc: "Securing AI-driven workflows against emerging threats.",
+    role: "Cybersecurity & Applied Cryptography",
+    desc: "Securing distributed autonomous agent communications, sandboxing tool execution, and PII anonymization.",
     icon: FiShield,
+    color: "text-amber-400",
   },
   {
-    role: "Backend & Infrastructure",
-    desc: "Building the core systems our platform and client products run on.",
+    role: "Distributed Cloud Infrastructure",
+    desc: "Architecting high-throughput microservices, vector storage pipelines, and sub-20ms edge proxies.",
     icon: FiServer,
+    color: "text-blue-400",
   },
   {
-    role: "Product Engineering",
-    desc: "Designing and building digital products for clients under Inferago Web.",
+    role: "Product & Digital Engineering",
+    desc: "Designing and shipping modern SaaS applications, interactive client platforms, and high-conversion UX funnels.",
     icon: FiLayout,
+    color: "text-emerald-400",
   },
   {
-    role: "DevOps / Cloud",
-    desc: "Keeping deployments reliable, scalable, and observable.",
+    role: "DevOps & Production Reliability",
+    desc: "Automating zero-downtime CI/CD deployments, distributed tracing, and real-time observability telemetry.",
     icon: FiCloud,
+    color: "text-indigo-400",
   },
   {
-    role: "Research & Product",
-    desc: "Researching AI risk patterns to shape what we build next.",
+    role: "Applied Research & Red-Teaming",
+    desc: "Simulating emerging agentic attack vectors, jailbreaks, and recursive execution failure loops.",
     icon: FiCompass,
+    color: "text-pink-400",
+  },
+];
+
+const pillars = [
+  {
+    number: "01",
+    title: "Runtime Verification Over Assumptions",
+    desc: "We believe AI systems cannot rely solely on prompt engineering. Robust enterprise adoption requires deterministic runtime boundaries and real-time safeguards.",
+  },
+  {
+    number: "02",
+    title: "Product-First, Engineering Always",
+    desc: "We do not sell abstract roadmaps or bloated billable hours. We engineer, ship, and harden real digital products that businesses depend on daily.",
+  },
+  {
+    number: "03",
+    title: "Zero Latency Tax",
+    desc: "Security and governance should never compromise performance. Our inspection proxies run in under 15ms, maintaining silky-smooth user experiences.",
+  },
+  {
+    number: "04",
+    title: "100% Client IP Ownership",
+    desc: "Everything we build for clients belongs entirely to them. No proprietary lock-in, no hidden runtime dependencies, only pristine, maintainable codebases.",
   },
 ];
 
 const About = () => {
   return (
-    <section id="about" className="py-8 md:py-16 bg-black inter-regular">
-      <div className="max-w-5xl mx-auto px-6">
+    <div className="relative min-h-screen bg-[#060709] text-white selection:bg-orange-500/30">
+      {/* Background Glows */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="bg-grid opacity-25" />
+        <div className="absolute top-24 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-gradient-to-b from-orange-600/15 via-amber-500/10 to-transparent blur-[140px] rounded-full pointer-events-none" />
+      </div>
 
-        {/* Title */}
-        <Reveal className="text-center mb-7 md:mb-14">
-          <div className="text-sm tracking-normal text-white">
-            WHY INFERAGO EXISTS
-          </div>
-        </Reveal>
+      <div className="relative z-10">
+        {/* ===================== HERO SECTION ===================== */}
+        <section className="pt-32 pb-16 md:pt-44 md:pb-24 px-5 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center">
+          <Reveal className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md mb-8">
+            <span className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
+            <span className="text-xs font-mono tracking-wide text-white/80">
+              WHY INFERAGO EXISTS
+            </span>
+          </Reveal>
 
-        {/* Main Heading */}
-        <Reveal delay={60}>
-          <p className="text-2xl md:text-3xl mb-8 md:mb-10 z-50 text-white leading-8 md:leading-11 text-center tracking-tight inter-medium max-w-3xl mx-auto">
-            Building the systems behind what&rsquo;s next.
-          </p>
-        </Reveal>
+          <Reveal delay={80}>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-white leading-tight">
+              Engineering the foundation for the{" "}
+              <span className="bg-gradient-to-r from-orange-400 via-amber-200 to-blue-400 bg-clip-text text-transparent">
+                autonomous era.
+              </span>
+            </h1>
+          </Reveal>
 
-        {/* Story */}
-        <Reveal delay={100} className="relative mb-10 md:mb-16">
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-            <div
-              className="absolute -top-10 left-1/2 -translate-x-1/2 w-[280px] md:w-[700px] h-[220px] md:h-[280px]
-              bg-[linear-gradient(90deg,#FF3300_0%,#FFCB83_40%,#0077FF_85%)]
-              opacity-30 blur-[90px]"
-            />
-          </div>
-          <div className="relative z-10 rounded-2xl p-px" style={{ background: "linear-gradient(to bottom, #FFCB83 0%, transparent 100%)" }}>
-            <div className="bg-black border border-white/10 rounded-2xl p-6 md:p-10">
-              <p className="text-sm md:text-base text-white/60 inter-light leading-relaxed max-w-3xl mx-auto text-center">
-                Inferago started from a simple observation: organizations are rapidly adopting AI and
-                automation, but the security, governance, and operational controls around these systems
-                are still developing. Exploring how AI-driven workflows could be monitored, understood,
-                and governed at runtime led to the idea of building an infrastructure layer specifically
-                for AI systems — that&rsquo;s Inferago AI. Building and shipping real client products —
-                Inferago Web — became how we fund that work and sharpen the engineering behind it. We&rsquo;re
-                still early and still validating the AI product, but that&rsquo;s the company we&rsquo;re building
-                toward: one technology company working in both directions.
+          <Reveal delay={160}>
+            <p className="mt-6 text-sm sm:text-base md:text-lg text-white/60 font-light max-w-2xl mx-auto leading-relaxed">
+              Inferago operates in two reinforcing directions: building runtime
+              governance for autonomous AI systems, and engineering high-velocity
+              digital products for forward-thinking enterprises.
+            </p>
+          </Reveal>
+        </section>
+
+        {/* ===================== ORIGIN STORY CARD ===================== */}
+        <section className="py-10 px-5 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+          <Reveal className="glass-panel rounded-3xl p-8 sm:p-10 md:p-12 border border-white/10 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-orange-500/10 blur-[100px] rounded-full pointer-events-none" />
+            <div className="max-w-3xl mx-auto text-center md:text-left">
+              <span className="text-xs font-mono text-orange-400 uppercase tracking-widest block mb-3">
+                OUR THESIS & ORIGIN
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-medium text-white mb-6">
+                Bridging the Governance Gap in Modern AI
+              </h2>
+              <p className="text-xs sm:text-sm text-white/70 font-light leading-relaxed mb-4">
+                As organizations rapidly deploy autonomous agentic workflows and LLMs into production, the operational controls around security, hallucination containment, and privacy remain fragile.
+              </p>
+              <p className="text-xs sm:text-sm text-white/70 font-light leading-relaxed mb-6">
+                Inferago was founded to solve this critical bottleneck. By developing <strong className="text-white font-medium">Inferago AI</strong> — an inline runtime governance layer — we give engineering teams the tools to monitor, sandbox, and secure agents in real time.
+              </p>
+              <p className="text-xs sm:text-sm text-white/70 font-light leading-relaxed">
+                Simultaneously, <strong className="text-white font-medium">Inferago Web</strong> delivers battle-tested product design and full-stack engineering for modern clients — sharpening our technical architecture against real-world production demands.
               </p>
             </div>
-          </div>
-        </Reveal>
-
-        {/* Mission / Vision */}
-        <div className="grid md:grid-cols-2 gap-4 mb-10 md:mb-16">
-          <Reveal delay={80} className="glass-badge card-lift rounded-2xl p-6 md:p-8">
-            <div className="text-xs basier-mono tracking-tighter text-white/40 mb-3">MISSION</div>
-            <p className="text-white/80 text-sm md:text-base leading-relaxed inter-light">
-              Make AI systems more secure, observable, and controllable in real-world environments —
-              and build digital products businesses can actually run on.
-            </p>
           </Reveal>
-          <Reveal delay={160} className="glass-badge card-lift rounded-2xl p-6 md:p-8">
-            <div className="text-xs basier-mono tracking-tighter text-white/40 mb-3">VISION</div>
-            <p className="text-white/80 text-sm md:text-base leading-relaxed inter-light">
-              Build the infrastructure layer that organizations rely on to securely operate AI at scale,
-              backed by a product engineering practice good enough to build it on.
-            </p>
-          </Reveal>
-        </div>
+        </section>
 
-        {/* Approach */}
-        <div className="grid md:grid-cols-2 gap-4 mb-10 md:mb-16">
-          <Reveal delay={100} className="glass-badge card-lift rounded-2xl p-6 md:p-8">
-            <div className="text-xs basier-mono tracking-tighter text-white/40 mb-3">INTELLIGENCE</div>
-            <p className="text-white/60 text-sm md:text-base leading-relaxed inter-light">
-              Inferago AI focuses on runtime governance — looking beyond individual model or prompt calls
-              to the full picture of AI-driven workflows: their interactions, risks, and decisions. Tools
-              like Datadog, LangSmith, and MLflow already cover important parts of the observability and
-              MLOps stack. Inferago&rsquo;s role is to sit at the governance layer above them, combining
-              security-first monitoring with human oversight.
-            </p>
+        {/* ===================== CORE PILLARS ===================== */}
+        <section className="py-16 md:py-24 px-5 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+          <Reveal className="text-center max-w-2xl mx-auto mb-14">
+            <span className="text-xs font-mono text-white/40 uppercase tracking-widest">
+              CORE PHILOSOPHY
+            </span>
+            <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight mt-1">
+              Guiding Engineering Principles
+            </h2>
           </Reveal>
-          <Reveal delay={160} className="glass-badge card-lift rounded-2xl p-6 md:p-8">
-            <div className="text-xs basier-mono tracking-tighter text-white/40 mb-3">PRODUCTS</div>
-            <p className="text-white/60 text-sm md:text-base leading-relaxed inter-light">
-              Inferago Web is product first, engineering always — we don&rsquo;t sell development hours, we
-              design and build products end to end. It&rsquo;s also where we learn: every client project
-              teaches us something that feeds back into how we build the next system.
-            </p>
-          </Reveal>
-        </div>
 
-        {/* Team */}
-        <Reveal delay={60} className="text-center mb-6 md:mb-10">
-          <div className="text-xs basier-mono tracking-tighter text-white/40 mb-2">TEAM</div>
-          <p className="text-white/40 text-xs md:text-sm inter-light max-w-md mx-auto">
-            Team structure and titles are still being finalized — named bios are coming soon.
-          </p>
-        </Reveal>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
-          {team.map((member, i) => {
-            const Icon = member.icon;
-            return (
-              <Reveal key={member.role} delay={i * 60} className="glass-badge card-lift rounded-xl p-4 md:p-5 flex flex-col gap-3">
-                <div className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/70">
-                  <Icon size={16} />
-                </div>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {pillars.map((p, i) => (
+              <Reveal
+                key={p.number}
+                delay={i * 80}
+                className="glass-panel card-lift rounded-3xl p-7 sm:p-8 border border-white/10 flex flex-col justify-between"
+              >
                 <div>
-                  <div className="text-xs md:text-sm text-white leading-tight mb-1">{member.role}</div>
-                  <p className="text-[11px] md:text-xs text-white/40 inter-light leading-relaxed">{member.desc}</p>
+                  <span className="text-2xl font-mono font-bold text-white/20 mb-3 block">
+                    {p.number}
+                  </span>
+                  <h3 className="text-lg font-medium text-white mb-2">{p.title}</h3>
+                  <p className="text-xs sm:text-sm text-white/60 font-light leading-relaxed">
+                    {p.desc}
+                  </p>
                 </div>
               </Reveal>
-            );
-          })}
-        </div>
+            ))}
+          </div>
+        </section>
 
+        {/* ===================== DISCIPLINES / TEAM DOMAINS ===================== */}
+        <section className="py-16 md:py-24 border-y border-white/[0.08] bg-white/[0.01]">
+          <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+            <Reveal className="text-center max-w-2xl mx-auto mb-14">
+              <span className="text-xs font-mono text-white/40 uppercase tracking-widest">
+                TECHNICAL DISCIPLINES
+              </span>
+              <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight mt-1">
+                Domain Specializations
+              </h2>
+              <p className="mt-2 text-xs sm:text-sm text-white/50 font-light">
+                Our multi-disciplinary team brings deep expertise across the modern computing spectrum.
+              </p>
+            </Reveal>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {engineeringDisciplines.map((item, i) => {
+                const Icon = item.icon;
+                return (
+                  <Reveal
+                    key={item.role}
+                    delay={i * 60}
+                    className="glass-panel card-lift rounded-2xl p-6 border border-white/10 flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 text-white">
+                        <Icon className={item.color} size={18} />
+                      </div>
+                      <h3 className="text-sm font-medium text-white mb-2">{item.role}</h3>
+                      <p className="text-xs text-white/50 font-light leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </Reveal>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* ===================== DIRECT CTA ===================== */}
+        <section className="py-20 md:py-32 px-5 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center">
+          <Reveal className="glass-panel rounded-3xl p-8 sm:p-12 border border-white/10">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-white mb-4">
+              Partner with an engineering team that delivers.
+            </h2>
+            <p className="text-xs sm:text-sm text-white/60 font-light max-w-xl mx-auto mb-8 leading-relaxed">
+              Whether you need to harden autonomous AI agents or build a new
+              commercial web platform, we bring production clarity from day one.
+            </p>
+            <Link
+              to="/contact"
+              className="px-6 py-3 text-sm font-medium bg-white text-black rounded-full hover:bg-white/90 active:scale-95 transition-all shadow-lg inline-flex items-center gap-2"
+            >
+              <span>Get in Touch</span>
+              <FiArrowUpRight />
+            </Link>
+          </Reveal>
+        </section>
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -1,159 +1,125 @@
 // components/Products.jsx
 import React from "react";
+import { Link } from "react-router-dom";
 import { GoShieldLock } from "react-icons/go";
 import { BiCommand } from "react-icons/bi";
 import { LuScanEye } from "react-icons/lu";
+import { FiCheckCircle, FiArrowUpRight, FiZap } from "react-icons/fi";
 import Reveal from "./Reveal";
 
+const products = [
+  {
+    icon: GoShieldLock,
+    title: "AI Security SaaS",
+    badge: "ENTERPRISE",
+    badgeColor: "bg-orange-500/10 text-orange-400 border-orange-500/20",
+    desc: "A cloud-native firewall and runtime defense platform that protects LLM applications from prompt injections, model manipulation, and confidential data exfiltration.",
+    features: [
+      "Sub-15ms inline proxy latency",
+      "PII redaction & secret masking",
+      "Automated jailbreak isolation",
+      "SOC2 / HIPAA compliance logs",
+    ],
+    accent: "from-orange-500/10 via-amber-500/5 to-transparent",
+  },
+  {
+    icon: BiCommand,
+    title: "Prompt Automation Engine",
+    badge: "WORKFLOWS",
+    badgeColor: "bg-amber-500/10 text-amber-400 border-amber-500/20",
+    desc: "Low-latency orchestration engine that executes complex multi-step business workflows from natural language prompts, complete with sandboxed tool access.",
+    features: [
+      "Deterministic structured output guarantee",
+      "Multi-agent task delegation",
+      "Automated fallback & retry handling",
+      "Native REST & Webhook connectors",
+    ],
+    accent: "from-amber-500/10 via-orange-500/5 to-transparent",
+  },
+  {
+    icon: LuScanEye,
+    title: "Monitoring & Insights SaaS",
+    badge: "OBSERVABILITY",
+    badgeColor: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+    desc: "Real-time AI telemetry suite that monitors hallucination rates, token cost trajectories, and agent performance anomalies with proactive mitigation alerts.",
+    features: [
+      "Real-time token & cost analytics",
+      "Hallucination index scoring",
+      "Live trace execution visualization",
+      "Automated rogue-agent killswitch",
+    ],
+    accent: "from-blue-500/10 via-indigo-500/5 to-transparent",
+  },
+];
+
 const Products = () => {
-  const products = [
-    {
-      icon: GoShieldLock,
-      iconProps: { strokeWidth: 0.5 },
-      title: "AI Security SaaS",
-      desc: "A cloud-based platform that protects AI systems from threats like data leaks, model attacks, and unauthorized access. It continuously monitors AI behavior, detects risks in real time, and ensures secure, reliable, and compliant AI operations.",
-      useStrokeOnly: false,
-    },
-    {
-      icon: BiCommand,
-      iconProps: {},
-      title: "Prompt-Based Automation",
-      desc: "An AI-powered solution that automates tasks using simple natural language prompts. Users can create workflows, trigger actions, and manage processes without coding, making automation faster, easier, and more accessible.",
-      useStrokeOnly: false,
-    },
-    {
-      icon: LuScanEye,
-      iconProps: { strokeWidth: 2 },
-      title: "Monitoring & Suggestion SaaS",
-      desc: "A smart monitoring platform that tracks system performance and user activity in real time. It analyzes data using AI and provides actionable insights and suggestions to improve efficiency, reduce issues, and optimize overall performance.",
-      useStrokeOnly: true,
-    },
-  ];
-
-  const gradientOffsets = ["left-60", "-left-20", "-left-[80%]"];
-
   return (
-    <section id="products" className="py-12 md:py-24 bg-black inter-regular">
-      <div className="max-w-5xl mx-auto px-6">
-        {/* Heading */}
-        <Reveal className="text-center mb-8 md:mb-16">
-          <div className="text-white text-sm mb-1 md:mb-3">PRODUCTS</div>
-        </Reveal>
+    <section id="products" className="py-16 md:py-24 px-5 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+      <Reveal className="text-center max-w-2xl mx-auto mb-14">
+        <span className="text-xs font-mono text-white/40 uppercase tracking-widest">
+          STANDALONE MODULES & PLATFORMS
+        </span>
+        <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight mt-1">
+          Core AI Product Offerings
+        </h2>
+        <p className="mt-3 text-sm text-white/50 font-light">
+          Engineered for teams operating LLMs, autonomous agents, and intelligent workflows in production.
+        </p>
+      </Reveal>
 
-        {/* Cards - Only this part is modified */}
-        <div className="grid md:grid-cols-3 gap-4">
-          {products.map((product, i) => {
-            const IconComponent = product.icon;
-            const gradientId = `icon-grad-${i}`;
-            const isStrokeOnly = product.useStrokeOnly ?? false;
+      <div className="grid md:grid-cols-3 gap-6">
+        {products.map((product, i) => {
+          const Icon = product.icon;
+          return (
+            <Reveal
+              key={product.title}
+              delay={i * 100}
+              className="glass-panel card-lift rounded-3xl p-6 sm:p-7 flex flex-col justify-between border border-white/10 relative overflow-hidden group"
+            >
+              {/* Card Accent Glow */}
+              <div
+                className={`absolute inset-0 bg-gradient-to-b ${product.accent} opacity-60 pointer-events-none transition-opacity duration-300 group-hover:opacity-100`}
+              />
 
-            return (
-              <Reveal
-                key={i}
-                delay={i * 100}
-                className="
-    glass-badge
-    card-lift
-    relative
-    overflow-hidden
-    rounded-2xl
-    p-5
-    flex
-    flex-col
-    max-w-[280px] mx-auto md:max-w-none
-  "
-              >
-                {/* Shared gradient background */}
-                <div
-                  className={`
-                    absolute
-                    -top-30
-                    ${gradientOffsets[i]}
-                    w-[120%]
-                    h-[200px]
-                    bg-[linear-gradient(90deg,#FF3300_0%,#FFCB83_40%,#0077FF_85%)]
-                    opacity-75
-                    blur-[80px]
-                    pointer-events-none
-                  `}
-                />
-
-                {/* ICON BOX */}
-                <div className="bg-white/5 border border-white/25 relative mb-4 w-fit p-2 rounded-lg overflow-hidden">
-                  {/* SVG Gradient Definition */}
-                  <svg
-                    width="0"
-                    height="0"
-                    className="absolute"
-                    aria-hidden="true"
-                  >
-                    <defs>
-                      <linearGradient
-                        id={gradientId}
-                        x1="0%"
-                        y1="0%"
-                        x2="100%"
-                        y2="100%"
-                      >
-                        <stop offset="0%" stopColor="white" stopOpacity="1" />
-                        <stop
-                          offset="100%"
-                          stopColor="white"
-                          stopOpacity="0.2"
-                        />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-
-                  {/* Icon with conditional gradient */}
-                  <IconComponent
-                    className="text-2xl relative z-10"
-                    style={{
-                      ...(isStrokeOnly
-                        ? { stroke: `url(#${gradientId})` }
-                        : {
-                          fill: `url(#${gradientId})`,
-                          stroke: `url(#${gradientId})`,
-                        }),
-                    }}
-                    {...product.iconProps}
-                  />
+              <div className="relative z-10">
+                <div className="flex items-center justify-between mb-5">
+                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white">
+                    <Icon size={20} />
+                  </div>
+                  <span className={`text-[10px] font-mono px-2.5 py-1 rounded-full border ${product.badgeColor}`}>
+                    {product.badge}
+                  </span>
                 </div>
 
-                {/* TITLE */}
-                <h3 className="relative z-10 text-sm mb-1">{product.title}</h3>
-
-                {/* DESCRIPTION */}
-                <p className="relative z-10 text-sm text-white/50 flex-1 tracking-normal leading-5 inter-light">
+                <h3 className="text-xl font-medium text-white mb-2">
+                  {product.title}
+                </h3>
+                <p className="text-xs text-white/60 font-light leading-relaxed mb-6">
                   {product.desc}
                 </p>
 
-                {/* BUTTON */}
-                <button
-                  className="
-                    relative z-10
-                    mt-4 md:mt-10
-                    px-4
-                    py-2
-                    text-xs
-                    bg-white
-                    text-black
-                    rounded-full
-                    flex
-                    items-center
-                    justify-center
-                    w-fit
-                    transition-all
-                    active:scale-95
-                    hover:bg-white/90
-                  "
+                <div className="space-y-2.5 pb-6 border-b border-white/10">
+                  {product.features.map((feat, idx) => (
+                    <div key={idx} className="flex items-center gap-2 text-xs text-white/80">
+                      <FiCheckCircle className="text-orange-400/90 text-xs shrink-0" />
+                      <span>{feat}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="relative z-10 pt-5 mt-auto">
+                <Link
+                  to="/contact"
+                  className="w-full py-2.5 px-4 text-xs font-medium bg-white/10 hover:bg-white text-white hover:text-black rounded-xl transition-all flex items-center justify-center gap-2 border border-white/10 group-hover:border-white/30"
                 >
-                  Learn More
-                </button>
-              </Reveal>
-            );
-          })}
-        </div>
+                  <span>Request Access</span>
+                  <FiArrowUpRight />
+                </Link>
+              </div>
+            </Reveal>
+          );
+        })}
       </div>
     </section>
   );
