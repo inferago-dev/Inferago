@@ -5,6 +5,9 @@ import { LuCopy, LuCheck, LuMail } from "react-icons/lu";
 import Reveal from "./Reveal";
 
 const EMAIL = "inferago@gmail.com";
+// FormSubmit forwards each message to EMAIL (no server needed). The first submission
+// sends an activation link to that inbox, which must be clicked once.
+const CONTACT_ENDPOINT = `https://formsubmit.co/ajax/${EMAIL}`;
 const GRADIENT = "linear-gradient(90deg,#FF3300 0%,#FFCB83 40%,#0077FF 85%)";
 
 const fieldClass =
@@ -12,6 +15,7 @@ const fieldClass =
 
 const Contact = () => {
   const [copied, setCopied] = useState(false);
+  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
   const timer = useRef(null);
 
   useEffect(() => () => clearTimeout(timer.current), []);
@@ -27,14 +31,28 @@ const Contact = () => {
     }
   };
 
-  // Opens the visitor's mail app with the message pre-filled
-  const handleSubmit = (e) => {
+  // Sends the message to FormSubmit, which emails it to us (replying goes to the visitor)
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const name = data.get("name");
-    const subject = `Inquiry from ${name}`;
-    const body = `${data.get("message")}\n\n${name}\n${data.get("email")}`;
-    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    data.append("_subject", `New inquiry from ${data.get("name")} (website)`);
+    data.append("_template", "table");
+
+    setStatus("sending");
+    try {
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: data,
+      });
+      const result = await res.json();
+      if (String(result.success) !== "true") throw new Error();
+      form.reset();
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -126,6 +144,16 @@ const Contact = () => {
                   </label>
                 </div>
 
+                {/* Honeypot: hidden from people, bots fill it in and get ignored */}
+                <input
+                  name="_honey"
+                  type="text"
+                  tabIndex="-1"
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="hidden"
+                />
+
                 <label className="flex flex-col gap-2">
                   <span className="text-xs text-white/40 tracking-widest uppercase">Message</span>
                   <textarea
@@ -139,11 +167,23 @@ const Contact = () => {
 
                 <button
                   type="submit"
-                  className="group flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-2.5 text-sm text-black bg-white rounded-full hover:bg-white/90 transition-all duration-300 active:scale-95"
+                  disabled={status === "sending"}
+                  className="group flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-2.5 text-sm text-black bg-white rounded-full hover:bg-white/90 transition-all duration-300 active:scale-95 disabled:opacity-60 disabled:pointer-events-none"
                 >
-                  Send Message
+                  {status === "sending" ? "Sending..." : "Send Message"}
                   <HiArrowUpRight className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </button>
+
+                <p aria-live="polite" className="text-sm inter-light tracking-wide min-h-5">
+                  {status === "sent" && (
+                    <span className="text-white/70">Thanks! Your message has been sent. We'll get back to you soon.</span>
+                  )}
+                  {status === "error" && (
+                    <span className="text-[#FF7A5C]">
+                      Couldn't send your message. Please email us at {EMAIL}.
+                    </span>
+                  )}
+                </p>
               </form>
 
             </div>
