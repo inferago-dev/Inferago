@@ -5,6 +5,7 @@ import { FiLock } from "react-icons/fi";
 import { LuChartLine, LuScanEye } from "react-icons/lu";
 import { BsPlusLg } from "react-icons/bs";
 import { RiGitBranchLine } from "react-icons/ri";
+import Reveal from "./Reveal";
 
 const Flowchart = () => {
   return (
@@ -20,7 +21,7 @@ const Flowchart = () => {
       <div
         className="absolute -bottom-130 left-1/2 -translate-x-1/2 w-[800px] h-[600px]
         bg-[linear-gradient(90deg,#FF3300_0%,#FFCB83_40%,#0077FF_85%)]
-        opacity-70 blur-[90px] z-0"
+        opacity-70 blur-[90px] z-0 animate-blob-drift"
       />
 
       <div className="max-w-7xl mx-auto relative z-10 w-full">
@@ -32,8 +33,9 @@ const Flowchart = () => {
         <div className="relative h-[600px] max-w-[1100px] mx-auto hidden md:block">
 
           {/* SVG CONNECTIONS */}
+          <Reveal direction="none" delay={250} threshold={0.1} className="absolute inset-0 z-10 pointer-events-none">
           <svg
-            className="absolute inset-0 w-full h-full pointer-events-none z-10"
+            className="connector-draw absolute inset-0 w-full h-full"
             viewBox="0 0 1100 600"
             fill="none"
           >
@@ -98,9 +100,10 @@ const Flowchart = () => {
             </g>
 
           </svg>
+          </Reveal>
 
           {/* CENTER CORE */}
-          <div className="absolute inset-0 flex items-center justify-center z-20">
+          <Reveal direction="none" threshold={0.1} className="absolute inset-0 flex items-center justify-center z-20">
 
             <div
               className="absolute w-[160px] h-[160px] rounded-xl blur-[30px]"
@@ -123,7 +126,7 @@ const Flowchart = () => {
 
             </div>
 
-          </div>
+          </Reveal>
 
           {/* FEATURE CARDS DESKTOP */}
 
@@ -138,6 +141,8 @@ const Flowchart = () => {
                 <FeatureCard
                   Icon={FiLock}
                   title="Security"
+                  direction="zoom"
+                  delay={550}
                   desc="Protect AI agents with trusted safeguards"
                   isStrokeOnly
                 />
@@ -150,7 +155,9 @@ const Flowchart = () => {
                 <FeatureCard
                   Icon={RiGitBranchLine}
                   title="Automation"
-                  desc="Streamline tasks with intelligent agent workflows"
+                  direction="zoom"
+                  delay={700}
+                  desc="Streamline tasks with smart workflows"
                 />
               </div>
 
@@ -165,7 +172,9 @@ const Flowchart = () => {
                 <FeatureCard
                   Icon={LuChartLine}
                   title="Analytics"
-                  desc="Gain actionable insights from agent performance."
+                  direction="zoom"
+                  delay={550}
+                  desc="Gain insights from agent performance"
                   isStrokeOnly
                 />
               </div>
@@ -177,7 +186,9 @@ const Flowchart = () => {
                 <FeatureCard
                   Icon={LuScanEye}
                   title="Real-time Monitoring"
-                  desc="Track activities instantly with transparent oversight."
+                  direction="zoom"
+                  delay={700}
+                  desc="Track activities with full oversight"
                   isStrokeOnly
                 />
               </div>
@@ -198,11 +209,11 @@ const Flowchart = () => {
 
           <div className="flex justify-center gap-2 w-full max-w-[280px]">
             <div className="flex-1">
-              <FeatureCard Icon={FiLock} title="Security" isStrokeOnly />
+              <FeatureCard Icon={FiLock} title="Security" isStrokeOnly direction="zoom" />
             </div>
 
             <div className="flex-1">
-              <FeatureCard Icon={LuChartLine} title="Analytics" isStrokeOnly />
+              <FeatureCard Icon={LuChartLine} title="Analytics" isStrokeOnly direction="zoom" delay={100} />
             </div>
           </div>
 
@@ -333,11 +344,11 @@ const Flowchart = () => {
           <div className="flex justify-center gap-2 w-full max-w-[280px]">
 
             <div className="flex-1">
-              <FeatureCard Icon={RiGitBranchLine} title="Automation" />
+              <FeatureCard Icon={RiGitBranchLine} title="Automation" direction="zoom" delay={250} />
             </div>
 
             <div className="flex-1">
-              <FeatureCard Icon={LuScanEye} title="Real-time Monitoring" isStrokeOnly />
+              <FeatureCard Icon={LuScanEye} title="Real-time Monitoring" isStrokeOnly direction="zoom" delay={350} />
             </div>
 
           </div>
@@ -357,8 +368,10 @@ const FeatureCard = ({
   title,
   desc,
   isStrokeOnly = false,
-  iconSize = 18,
+  iconSize = 24,
   strokeWidth = 2.2,
+  direction = "up",
+  delay = 0,
 }) => {
 
   const uniqueId = useId();
@@ -369,11 +382,12 @@ const FeatureCard = ({
 
   return (
 
-    <div className="group w-full glass-badge p-3 rounded-2xl transition-all duration-300 hover:scale-[1.02]">
+    <Reveal direction={direction} delay={delay} threshold={0.1}>
+    <div className="group w-full glass-badge glass-blur p-4 rounded-2xl transition-transform duration-500 hover:scale-[1.02]">
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
 
-        <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center relative overflow-hidden">
+        <div className="flex-shrink-0 w-12 h-12 rounded-lg glass-badge backdrop-blur-md flex items-center justify-center relative overflow-hidden">
 
           <svg width="0" height="0" className="absolute">
             <defs>
@@ -407,12 +421,12 @@ const FeatureCard = ({
 
         <div>
 
-          <h3 className="text-white text-sm tracking-tight leading-none">
+          <h3 className="text-white text-md tracking-tight leading-none">
             {title}
           </h3>
 
           {desc && (
-            <p className="hidden md:block text-white/50 text-xs leading-tight mt-1 inter-light">
+            <p className="hidden md:block text-white/50 text-sm leading-tight mt-1 inter-light line-clamp-2">
               {desc}
             </p>
           )}
@@ -422,6 +436,7 @@ const FeatureCard = ({
       </div>
 
     </div>
+    </Reveal>
 
   );
 

@@ -32,7 +32,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-10 text-xs tracking-tight inter-regular">
+        <div className="hidden md:flex items-center gap-10 text-sm inter-regular">
           {[
             { label: "HOME", id: "home" },
             { label: "ABOUT", id: "about" },
@@ -55,9 +55,9 @@ const Navbar = () => {
         <div className="hidden md:flex items-center">
           <button
             onClick={() => scrollToSection("contact")}
-            className="flex items-center gap-1.5 px-4 py-1.5 text-xs tracking-widest bg-white text-black rounded-full hover:bg-white/90 transition-all duration-200 active:scale-95"
+            className="group flex items-center gap-2 h-9 px-5 text-sm inter-medium bg-white text-black rounded-full hover:bg-white/90 transition-all duration-300 active:scale-95"
           >
-            GET STARTED <HiArrowUpRight className="text-sm" />
+            Get Started <HiArrowUpRight className="text-sm transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </button>
         </div>
 
@@ -72,9 +72,8 @@ const Navbar = () => {
 
       {/* Mobile Menu — animated slide-down */}
       <div
-        className={`md:hidden border-t border-white/10 backdrop-blur-lg px-6 flex flex-col gap-5 text-sm tracking-tight inter-regular overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? "pt-6 pb-10 max-h-[500px] opacity-100" : "max-h-0 opacity-0 pt-0 pb-0"
-        }`}
+        className={`md:hidden border-t border-white/10 backdrop-blur-lg px-6 flex flex-col gap-5 text-sm tracking-tight inter-regular overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "pt-6 pb-10 max-h-[500px] opacity-100" : "max-h-0 opacity-0 pt-0 pb-0"
+          }`}
       >
         {[
           { label: "HOME", id: "home" },
@@ -106,4 +105,4 @@ const Navbar = () => {
 
 export default Navbar;
 
-
+

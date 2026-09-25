@@ -2,42 +2,33 @@
 import React from "react";
 import { HiArrowUpRight } from "react-icons/hi2";
 import { TbBrowserPlus } from "react-icons/tb";
-import { MdOutlineDesignServices } from "react-icons/md";
-import { LuLayoutTemplate } from "react-icons/lu";
-import { BiCodeAlt } from "react-icons/bi";
+import { LuBot, LuLayoutTemplate, LuWrench } from "react-icons/lu";
+import Reveal from "./Reveal";
+
+const TECH_SERVICES_URL = "https://techservices.inferago.com/";
+
+const GRADIENT = "linear-gradient(90deg,#FF3300 0%,#FFCB83 40%,#0077FF 85%)";
 
 const services = [
   {
     icon: TbBrowserPlus,
-    title: "Full-Stack Web Development",
-    desc: "End-to-end web applications built with modern frameworks — React, Next.js, and Node.js. From MVPs to enterprise-scale platforms, we ship fast without compromising quality.",
-    tag: "Development",
-    gradient: "from-[#FF3300]/30 via-[#FFCB83]/20 to-transparent",
-    accent: "#FF3300",
+    title: "Web & Software",
+    desc: "Websites, applications, APIs, and digital products.",
+  },
+  {
+    icon: LuBot,
+    title: "AI & Automation",
+    desc: "AI solutions and intelligent workflows for modern businesses.",
   },
   {
     icon: LuLayoutTemplate,
-    title: "UI / UX Design & Prototyping",
-    desc: "Pixel-perfect interfaces grounded in conversion-first design principles. We craft experiences that feel intuitive, look stunning, and perform across every device.",
-    tag: "Design",
-    gradient: "from-[#0077FF]/30 via-[#FFCB83]/20 to-transparent",
-    accent: "#0077FF",
+    title: "Product Design",
+    desc: "UI/UX, prototyping, and product experiences.",
   },
   {
-    icon: BiCodeAlt,
-    title: "API & Backend Engineering",
-    desc: "Scalable REST and GraphQL APIs, microservices architecture, and cloud-native deployments. Built for reliability, speed, and seamless third-party integrations.",
-    tag: "Engineering",
-    gradient: "from-[#7C3AED]/30 via-[#FFCB83]/10 to-transparent",
-    accent: "#7C3AED",
-  },
-  {
-    icon: MdOutlineDesignServices,
-    title: "Website Maintenance & Growth",
-    desc: "Ongoing support, performance optimization, SEO enhancement, and feature iteration. We keep your digital presence fast, secure, and continuously improving.",
-    tag: "Support",
-    gradient: "from-[#00C896]/30 via-[#0077FF]/10 to-transparent",
-    accent: "#00C896",
+    icon: LuWrench,
+    title: "Tech Support",
+    desc: "Maintenance, optimization, and ongoing development.",
   },
 ];
 
@@ -47,106 +38,99 @@ const Services = () => {
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Label */}
-        <div className="flex justify-center mb-8">
-          <span className="text-xs tracking-widest text-white/40 uppercase border border-white/10 rounded-full px-4 py-1.5">
+        <Reveal className="flex justify-center mb-8">
+          <span className="text-xs tracking-widest text-white/50 uppercase border border-white/10 rounded-full px-4 py-1.5">
             Services
           </span>
-        </div>
+        </Reveal>
 
         {/* Headline */}
         <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-5xl inter-medium text-white tracking-tight leading-tight mb-4">
-            We build the web<br className="hidden md:block" /> that powers your vision.
-          </h2>
-          <p className="text-sm text-white/40 inter-light max-w-xl mx-auto leading-6 tracking-wide">
-            From sleek landing pages to complex web platforms — Inferago delivers end-to-end web development services tailored for modern businesses.
-          </p>
+          <Reveal delay={100}>
+            <h2 className="text-3xl md:text-5xl inter-medium text-white tracking-tight leading-tight mb-4">
+              Technology that moves<br className="hidden md:block" /> ideas forward.
+            </h2>
+          </Reveal>
+          <Reveal delay={200}>
+            <p className="text-sm text-white/40 inter-light max-w-xl mx-auto leading-6 tracking-wide">
+              Beyond our products, the Inferago team designs, builds, and supports technology for modern businesses.
+            </p>
+          </Reveal>
         </div>
 
         {/* Cards Grid */}
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {services.map((svc, i) => {
             const Icon = svc.icon;
             return (
-              <div
-                key={i}
-                className="service-card glass-badge relative overflow-hidden rounded-2xl p-6 flex flex-col group cursor-pointer"
-              >
-                {/* Gradient blob */}
-                <div
-                  className="absolute -top-16 -left-10 w-[160%] h-[180px] opacity-60 blur-[70px] pointer-events-none transition-opacity duration-500 group-hover:opacity-90"
-                  style={{ background: `radial-gradient(ellipse at 30% 40%, ${svc.accent}50, transparent 70%)` }}
-                />
+              <Reveal key={svc.title} delay={i * 110} className="h-full">
+                <a
+                  href={TECH_SERVICES_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="lift-card glass-badge group relative overflow-hidden rounded-2xl p-6 h-full flex flex-col"
+                >
+                  {/* Hover glow */}
+                  <div
+                    className="absolute -top-24 -right-16 w-[220px] h-[160px] opacity-0 group-hover:opacity-40 blur-[60px] pointer-events-none transition-opacity duration-700"
+                    style={{ background: GRADIENT }}
+                  />
 
-                {/* Icon + Tag row */}
-                <div className="relative z-10 flex items-start justify-between mb-5">
-                  <div className="bg-white/5 border border-white/15 p-2.5 rounded-xl">
-                    <Icon
-                      className="text-2xl"
-                      style={{ color: svc.accent }}
-                      strokeWidth={1.5}
-                    />
+                  {/* Icon + arrow row */}
+                  <div className="relative z-10 flex items-start justify-between mb-5">
+                    <div className="w-fit bg-white/5 border border-white/15 p-2.5 rounded-xl">
+                      <Icon className="text-xl text-white" strokeWidth={1.8} />
+                    </div>
+                    <HiArrowUpRight className="text-sm text-white/30 transition-all duration-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </div>
-                  <span
-                    className="text-[10px] tracking-widest uppercase px-3 py-1 rounded-full border"
-                    style={{
-                      color: svc.accent,
-                      borderColor: `${svc.accent}40`,
-                      backgroundColor: `${svc.accent}10`,
-                    }}
-                  >
-                    {svc.tag}
-                  </span>
-                </div>
 
-                {/* Title */}
-                <h3 className="relative z-10 text-base inter-medium text-white mb-2 tracking-tight group-hover:text-white/90 transition-colors">
-                  {svc.title}
-                </h3>
+                  {/* Title */}
+                  <h3 className="relative z-10 text-sm text-white mb-1">{svc.title}</h3>
 
-                {/* Description */}
-                <p className="relative z-10 text-sm text-white/45 inter-light flex-1 leading-6 tracking-normal">
-                  {svc.desc}
-                </p>
-
-                {/* CTA */}
-                <div className="relative z-10 mt-6">
-                  <button className="flex items-center gap-1.5 text-xs tracking-wide text-white/50 hover:text-white transition-colors duration-200 group/btn">
-                    Learn More
-                    <HiArrowUpRight className="text-xs transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                  </button>
-                </div>
-
-                {/* Bottom accent line */}
-                <div
-                  className="absolute bottom-0 left-0 h-[1px] w-0 group-hover:w-full transition-all duration-500 pointer-events-none"
-                  style={{ background: `linear-gradient(to right, ${svc.accent}80, transparent)` }}
-                />
-              </div>
+                  {/* Description */}
+                  <p className="relative z-10 text-sm text-white/50 inter-light leading-5">{svc.desc}</p>
+                </a>
+              </Reveal>
             );
           })}
         </div>
 
         {/* Bottom CTA strip */}
-        <div className="mt-10 glass-badge rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <p className="text-base inter-medium text-white tracking-tight mb-1">
-              Ready to launch your next project?
-            </p>
-            <p className="text-sm text-white/40 inter-light leading-5">
-              Let's talk about what we can build together.
-            </p>
+        <Reveal delay={150}>
+          <div className="mt-10 glass-badge relative overflow-hidden rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div
+              className="absolute -bottom-24 right-0 w-[60%] h-[160px] opacity-30 blur-[80px] pointer-events-none"
+              style={{ background: "linear-gradient(90deg,#FF3300 0%,#FFCB83 40%,#0077FF 85%)" }}
+            />
+            <div className="relative z-10 text-center md:text-left">
+              <p className="text-base md:text-lg inter-medium text-white tracking-tight mb-1">
+                Have a project in mind?
+              </p>
+              <p className="text-sm text-white/40 inter-light leading-5">
+                Let's talk about what we can build together.
+              </p>
+            </div>
+            <div className="relative z-10 flex flex-col sm:flex-row items-center gap-3">
+              <a
+                href={TECH_SERVICES_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 flex items-center gap-2 px-6 py-2.5 text-sm text-white/70 border border-white/15 rounded-full hover:text-white hover:border-white/30 transition-all duration-300"
+              >
+                Tech Services <HiArrowUpRight className="text-sm" />
+              </a>
+              <button
+                onClick={() => {
+                  const el = document.getElementById("contact");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="shrink-0 flex items-center gap-2 px-6 py-2.5 text-sm bg-white text-black rounded-full hover:bg-white/90 transition-all duration-300 active:scale-95 inter-medium"
+              >
+                Get in Touch <HiArrowUpRight className="text-sm" />
+              </button>
+            </div>
           </div>
-          <button
-            onClick={() => {
-              const el = document.getElementById("contact");
-              if (el) el.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="shrink-0 flex items-center gap-2 px-6 py-2.5 text-xs tracking-widest bg-white text-black rounded-full hover:bg-white/90 transition-all duration-200 active:scale-95 inter-regular"
-          >
-            GET IN TOUCH <HiArrowUpRight className="text-sm" />
-          </button>
-        </div>
+        </Reveal>
 
       </div>
     </section>
