@@ -5,6 +5,7 @@ import Hero from "./components/Hero";
 
 import Products from "./components/Products";
 import About from "./components/About";
+import Services from "./components/Services";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
@@ -13,9 +14,10 @@ function App() {
     <div className="dark min-h-screen bg-black text-white overflow-x-hidden">
       <Navbar />
       <Hero />
-      
-      <Products />
+
       <About />
+      <Products />
+      <Services />
       <Contact />
       <Footer />
     </div>

@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Smooth scroll globally */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Inter Thin */
 @font-face {
   font-family: "Inter";
@@ -127,10 +132,6 @@
   padding: 12px 14px;
 }
 
-path {
-  animation: flow 4s linear infinite;
-}
-
 @keyframes flow {
   to {
     stroke-dashoffset: 100;
@@ -162,7 +163,7 @@ path {
 }
 
 .animate-blob-linear {
-  animation: blob-linear 5s ease-in-out infinite;
+  animation: blob-linear 10s ease-in-out infinite;
 }
 
 .bg-grid {
@@ -200,10 +201,47 @@ path {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.2),
     inset 0 -1px 0 rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-badge:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Section fade-in-up animation */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.65s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* Service card transition smoothing */
+.service-card {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Path flow animation override — smoother */
+path {
+  animation: flow 6s linear infinite;
 }

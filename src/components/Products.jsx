@@ -35,8 +35,10 @@ const Products = () => {
     <section id="products" className="py-12 md:py-24 bg-black inter-regular">
       <div className="max-w-5xl mx-auto px-6">
         {/* Heading */}
-        <div className="text-center mb-8 md:mb-16">
-          <div className="text-white text-sm mb-1 md:mb-3">PRODUCTS</div>
+        <div className="text-center mb-10 md:mb-16">
+          <span className="text-xs tracking-widest text-white/40 uppercase border border-white/10 rounded-full px-4 py-1.5 inter-regular">
+            Products
+          </span>
         </div>
 
         {/* Cards - Only this part is modified */}

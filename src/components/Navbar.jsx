@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { IoIosClose } from "react-icons/io";
 import { HiOutlineBars3 } from "react-icons/hi2";
+import { HiArrowUpRight } from "react-icons/hi2";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,8 +16,9 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="inter-regular fixed top-0 left-0 right-0 z-50 ">
+    <nav className="inter-regular fixed top-0 left-0 right-0 z-50">
       <div className="mx-auto backdrop-blur-lg px-8 py-4 flex items-center justify-between">
+
         {/* Logo */}
         <div
           onClick={() => scrollToSection("home")}
@@ -30,105 +32,78 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-10 text-xs">
-          <button
-            onClick={() => scrollToSection("home")}
-            className="border border-transparent hover:border-b-white py-1.5 transition-colors"
-          >
-            HOME
-          </button>
-          <button
-            onClick={() => scrollToSection("about")}
-            className="border border-transparent hover:border-b-white py-1.5 transition-colors"
-          >
-            ABOUT
-          </button>
-          <button
-            onClick={() => scrollToSection("products")}
-            className="border border-transparent hover:border-b-white py-1.5 transition-colors"
-          >
-            PRODUCTS
-          </button>
-          <button
-            onClick={() => scrollToSection("contact")}
-            className="border border-transparent hover:border-b-white py-1.5 transition-colors"
-          >
-            CONTACT
-          </button>
-          <a
-            href="#"
-            className="border border-transparent hover:border-b-white py-1.5 transition-colors"
-          >
-            DOCS
-          </a>
+        <div className="hidden md:flex items-center gap-10 text-xs tracking-tight inter-regular">
+          {[
+            { label: "HOME", id: "home" },
+            { label: "ABOUT", id: "about" },
+            { label: "PRODUCTS", id: "products" },
+            { label: "SERVICES", id: "services" },
+            { label: "CONTACT", id: "contact" },
+          ].map(({ label, id }) => (
+            <button
+              key={id}
+              onClick={() => scrollToSection(id)}
+              className="text-white/50 hover:text-white transition-colors duration-200 relative group"
+            >
+              {label}
+              <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-300" />
+            </button>
+          ))}
         </div>
 
-        {/* Auth Buttons */}
-        <div className="hidden md:flex items-center gap-4">
-          <button
-            onClick={() => alert("Login coming soon")}
-            className="px-2 py-3 text-sm text-white"
-          >
-            Login
-          </button>
+        {/* Get Started */}
+        <div className="hidden md:flex items-center">
           <button
             onClick={() => scrollToSection("contact")}
-            className="px-3 py-1.5 text-sm bg-white text-black rounded-full hover:bg-white/90 transition-all active:scale-95"
+            className="flex items-center gap-1.5 px-4 py-1.5 text-xs tracking-widest bg-white text-black rounded-full hover:bg-white/90 transition-all duration-200 active:scale-95"
           >
-            Get Started
+            GET STARTED <HiArrowUpRight className="text-sm" />
           </button>
         </div>
 
-        {/* Mobile Hamburger & Close Button - Same Position */}
+        {/* Mobile Hamburger */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden flex items-center justify-center w-10 h-10 -mr-4"  // Only this line changed
+          className="md:hidden flex items-center justify-center w-10 h-10 -mr-2"
         >
-          {isOpen ? (
-            <IoIosClose size={30} />
-          ) : (
-            <HiOutlineBars3 size={20} />
-          )}
+          {isOpen ? <IoIosClose size={28} /> : <HiOutlineBars3 size={20} />}
         </button>
       </div>
 
-      {/* Mobile Menu - No changes */}
-      {isOpen && (
-        <div className="md:hidden border-t backdrop-blur-lg border-white/10 px-6 py-8 flex flex-col gap-6 text-sm h-screen pt-15">
-          <button onClick={() => scrollToSection("home")}>
-            HOME
+      {/* Mobile Menu — animated slide-down */}
+      <div
+        className={`md:hidden border-t border-white/10 backdrop-blur-lg px-6 flex flex-col gap-5 text-sm tracking-tight inter-regular overflow-hidden transition-all duration-300 ease-in-out ${
+          isOpen ? "pt-6 pb-10 max-h-[500px] opacity-100" : "max-h-0 opacity-0 pt-0 pb-0"
+        }`}
+      >
+        {[
+          { label: "HOME", id: "home" },
+          { label: "ABOUT", id: "about" },
+          { label: "PRODUCTS", id: "products" },
+          { label: "SERVICES", id: "services" },
+          { label: "CONTACT", id: "contact" },
+        ].map(({ label, id }) => (
+          <button
+            key={id}
+            onClick={() => scrollToSection(id)}
+            className="text-left text-white/60 hover:text-white transition-colors duration-200"
+          >
+            {label}
           </button>
-          <button onClick={() => scrollToSection("about")}>
-            ABOUT
+        ))}
+        <div className="pt-4 border-t border-white/10">
+          <button
+            onClick={() => scrollToSection("contact")}
+            className="w-full py-2.5 flex items-center justify-center gap-2 bg-white text-black rounded-full text-xs tracking-tight inter-regular"
+          >
+            GET STARTED <HiArrowUpRight />
           </button>
-          <button onClick={() => scrollToSection("products")}>
-            PRODUCTS
-          </button>
-          <button onClick={() => scrollToSection("contact")}>
-            CONTACT
-          </button>
-          <a href="#" className="text-center">
-            DOCS
-          </a>
-
-          <div className="flex flex-col gap-4 pt-6 border-t border-white/10">
-            <button
-              onClick={() => alert("Login coming soon")}
-              className="w-full py-2 text-white"
-            >
-              Login
-            </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="w-full py-2 bg-white text-black rounded-full"
-            >
-              Get Started
-            </button>
-          </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 };
 
 export default Navbar;
+
+
